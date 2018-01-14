@@ -1,0 +1,30 @@
+.navbar {
+	padding: 0;
+	width: 100%;
+}
+.navbar-expand-md{
+	background: #3f51b5;		
+}
+.navbar-brand {
+	position: relative;
+	padding: 10px 15px;
+}
+.navbar-brand span {
+	font-size: 10px;
+	color: #FFF;
+	margin-left: -2px;
+	top: 13px;
+	position: relative;
+	font-weight: bold;
+}
+.navbar-nav li a {
+	font-size: 14px;
+	font-weight: 500;
+	color: rgba(255, 255, 255, .87);
+	padding: 20px;
+	text-decoration: none;
+}
+.navbar-nav li a:hover {
+	color: #FFFFFF;
+	background: rgba(0, 0, 0, .1);
+}
