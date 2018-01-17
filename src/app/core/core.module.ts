@@ -7,6 +7,8 @@ import { SharedModule } from '../shared/shared.module';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
 
 @NgModule({
   imports: [
@@ -19,7 +21,9 @@ import { CommonModule } from '@angular/common';
   declarations: [
     NavbarComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent
   ],
   exports: [
     NavbarComponent,

@@ -3,14 +3,20 @@
 
 html, body {
     background: #F1F3F6;
+    color: #3F3F3F;
 }
 
 body {
     font-family: 'Roboto', sans-serif;
     padding-top: 90px;
+    padding-bottom: 30px;
 }
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Merriweather', sans-serif;
+}
+
+.mr-t-lg {
+    padding-top: 30px;
 }
 
 .mat-form-field ,
@@ -19,4 +25,54 @@ h1, h2, h3, h4, h5, h6 {
 }
 .mat-form-field-underline {
     background-color: rgba(0,0,0,.2);
+}
+.mat-form-field-label{ 
+    font-size: 14px !important;
+}
+
+.mat-input-invalid {
+    padding-bottom: 15px;
+}
+
+.login-card {
+    margin-top: 16px;
+    border: 0;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+}
+.login-card .card-header p{
+    margin-bottom: 0;
+}
+.login-card .mat-icon {
+    cursor: pointer;
+}
+.login-card .mat-icon:not(:hover) {
+    opacity: .54;
+}
+.forgot-password-link-wrap {
+    margin-top: 16px;
+    margin-right: -16px;
+}
+
+.profile-container {
+    padding-left: 250px;
+}
+.profile-container .profile-container-left {
+    margin-left: -250px;
+    width: 220px;
+    float: left;
+}
+.profile-container .profile-container-left img {
+    max-width: 220px;
+}
+.profile-container .info p {
+    margin-bottom: 5px;
+}
+.profile-container .about-me,
+.profile-container .social-media {
+    margin-top: 60px;
+}
+.profile-container h4 {
+    font-weight: lighter;
+    margin-top: 0;
+    color: #3f51b5;
 }
