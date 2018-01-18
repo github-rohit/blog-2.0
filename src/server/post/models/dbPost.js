@@ -87,31 +87,31 @@ dbSchema.statics.updatePublishAndDelete = function (postObj, delId) {
         Posts.findOneAndUpdate({
             _id: ID
         }, {
-                $set: postObj
-            }, {
-                new: true
-            }, (err, post) => {
-                if (err) {
-                    reject({
-                        id,
-                        code: "001#1"
-                    });
-                } else {
-                    Posts.remove({
-                        _id: delId
-                    }, (err) => {
-                        if (err) {
-                            reject({
-                                id,
-                                code: "001#2"
-                            });
-                        } else {
-                            resolve(post);
-                        }
-                    });
-                }
+            $set: postObj
+        }, {
+            new: true
+        }, (err, post) => {
+            if (err) {
+                reject({
+                    id,
+                    code: "001#1"
+                });
+            } else {
+                Posts.remove({
+                    _id: delId
+                }, (err) => {
+                    if (err) {
+                        reject({
+                            id,
+                            code: "001#2"
+                        });
+                    } else {
+                        resolve(post);
+                    }
+                });
+            }
 
-            });
+        });
     })
 
 }
