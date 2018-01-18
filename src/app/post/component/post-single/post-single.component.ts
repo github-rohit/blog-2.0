@@ -4,6 +4,7 @@ import { PostService } from './../../../shared/services/post.service';
 import { Http } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../../../shared/models/post';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'post-single',

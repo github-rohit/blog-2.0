@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CommentService } from './services/comment.service';
 import { HttpModule } from '@angular/http';
@@ -12,6 +13,9 @@ import { TinymceEditorComponent } from './component/tinymce-editor/tinymce-edito
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatComponentModule,
     HttpModule,
     RouterModule.forChild([])
   ],

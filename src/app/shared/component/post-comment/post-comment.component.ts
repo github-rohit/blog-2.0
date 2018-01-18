@@ -1,4 +1,5 @@
 import { CommentService } from './../../services/comment.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -10,8 +11,19 @@ export class PostCommentComponent implements OnInit {
   // tslint:disable-next-line:no-input-rename
   @Input('post-id') postId: any;
   comments: any[] = [];
+  form: FormGroup;
+  constructor(
+    private fb: FormBuilder,
+    private commentService: CommentService) {
+    this.form = fb.group({
+      comment: ['', [
+        Validators.required]]
+    });
+  }
 
-  constructor(private commentService: CommentService) { }
+  submit() {
+    console.log('create');
+  }
 
   ngOnInit() {
     this.commentService.getCommentForPost(this.postId).subscribe(comments => {

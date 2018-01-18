@@ -14,9 +14,12 @@
     </ng-container>
   </div>
   <div class="ui-add-comment-footer">
-    <form>
-      <textarea name="" id="" cols="30" rows="10"></textarea>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <mat-form-field>
+        <textarea matInput placeholder="Add Comment"></textarea>
+      </mat-form-field>
     </form>
-    Please <a routerLink="/login">login</a> for add Comment.
+    Please
+    <a routerLink="/login">login</a> for add Comment.
   </div>
 </div>
