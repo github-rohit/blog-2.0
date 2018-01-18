@@ -17,6 +17,9 @@
 	position: relative;
 	font-weight: bold;
 }
+.navbar-nav li {
+	margin-left: 1px;
+}
 .navbar-nav li a {
 	font-size: 14px;
 	font-weight: 500;
@@ -27,4 +30,8 @@
 .navbar-nav li a:hover {
 	color: #FFFFFF;
 	background: rgba(0, 0, 0, .1);
+}
+.navbar-nav li.active > a {
+	color: #FFF;
+	background: rgba(0, 0, 0, .12);
 }

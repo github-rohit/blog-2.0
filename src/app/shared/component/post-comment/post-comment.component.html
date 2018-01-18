@@ -1,0 +1,22 @@
+<div class="ui-add-comment">
+  <div class="ui-add-comment-header">
+    <h4>{{comments.length}} Comments</h4>
+  </div>
+  <div class="ui-add-comment-body">
+    <ng-container *ngFor="let comment of comments">
+      <div class="comment-row">
+        <p>{{comment.body}}</p>
+        <div class="byline small">
+          <span>by: </span>
+          <a [routerLink]="['user', comment.id]" routerLink="{{comment.name}}">{{comment.name}}</a>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <div class="ui-add-comment-footer">
+    <form>
+      <textarea name="" id="" cols="30" rows="10"></textarea>
+    </form>
+    Please <a routerLink="/login">login</a> for add Comment.
+  </div>
+</div>

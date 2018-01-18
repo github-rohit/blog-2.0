@@ -1,0 +1,50 @@
+<div class="angular-new-form-warpper clearfix">
+  <form [formGroup]="form" (ngSubmit)="save()">
+    <div class="col-left">
+      <mat-form-field>
+        <input formControlName="title" type="text" matInput placeholder="Title" required>
+        <mat-error *ngIf="title.errors">
+          <p *ngIf="title.errors.required">
+            <i class="fa fa-exclamation-circle"></i> You can't leave this empty.</p>
+        </mat-error>
+      </mat-form-field>
+      <tinymce-editor [elementId]="'my-editor-id'" (onEditorKeyup)="keyupHandlerFunction($event)">
+      </tinymce-editor>
+    </div>
+    <div class="col-right">
+      <div class="panel panel-default">
+        <div class="panel-heading">Featured image url</div>
+        <div class="panel-body">
+            <mat-form-field>
+              <input formControlName="image" type="text" matInput placeholder="Featured image url">
+            </mat-form-field>
+            <img *ngIf="image.value" [src]="image.value" class="img-fluid">
+          </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">Category</div>
+        <div class="panel-body">
+          <mat-form-field>
+              <mat-select formControlName="image">
+                <mat-option>None</mat-option>
+                <mat-option value="option1">Option 1</mat-option>
+                <mat-option value="option2">Option 2</mat-option>
+                <mat-option value="option3">Option 3</mat-option>
+              </mat-select>
+            </mat-form-field>              
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">Tags</div>
+        <div class="panel-body">
+            <mat-form-field>
+              <input formControlName="tags" type="text" matInput placeholder="Tags">
+            </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="fixed-wrapper-btns create-btns clearfix">
+      <button mat-raised-button color="primary" [disabled]="form.invalid">Save as Draft</button>
+    </div>
+  </form>
+</div>
