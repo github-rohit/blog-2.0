@@ -8,6 +8,7 @@ import { ProfileUpdateFormComponent } from './component/profile-update-form/prof
 import { ProfileViewComponent } from './component/profile-view/profile-view.component';
 import { PostFormComponent } from './component/post-form/post-form.component';
 import { MyPostsComponent } from './component/my-posts/my-posts.component';
+import { AutoResizeTextareaDirective } from './directive/auto-resize-textarea.directive';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { MyPostsComponent } from './component/my-posts/my-posts.component';
     ProfileUpdateFormComponent,
     ProfileViewComponent,
     PostFormComponent,
-    MyPostsComponent
+    MyPostsComponent,
+    AutoResizeTextareaDirective
   ],
   exports: [
 

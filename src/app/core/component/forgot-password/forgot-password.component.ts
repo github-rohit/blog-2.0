@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./forgot-password.component.css']
 })
 export class ForgotPasswordComponent {
-
+  success = false;
   form: FormGroup;
   constructor(
     private fb: FormBuilder
@@ -22,6 +22,7 @@ export class ForgotPasswordComponent {
   }
 
   submit() {
+    this.success = true;
     console.log('SUBMIT');
   }
 

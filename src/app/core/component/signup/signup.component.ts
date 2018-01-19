@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
+  success = false;
   hide = true;
   form: FormGroup;
   constructor(
@@ -36,6 +37,7 @@ export class SignupComponent {
 
   submit() {
     console.log('SUBMIT');
+    this.success = true;
   }
 
   get email() {

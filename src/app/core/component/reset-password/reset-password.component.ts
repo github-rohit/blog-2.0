@@ -1,6 +1,7 @@
 import { ComparePasswordValidation } from './../../validation/compare-password.validation';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'reset-password',
@@ -11,6 +12,7 @@ export class ResetPasswordComponent {
   hide = true;
   form: FormGroup;
   constructor(
+    private router: Router,
     private fb: FormBuilder
   ) {
     this.form = fb.group({
@@ -29,6 +31,11 @@ export class ResetPasswordComponent {
 
   submit() {
     console.log('SUBMIT');
+    this.router.navigate(['/admin/myposts'], {
+      queryParams: {
+        status: 'published'
+      }
+    });
   }
 
   get password() {

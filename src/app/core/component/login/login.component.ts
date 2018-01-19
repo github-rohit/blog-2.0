@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -11,6 +12,7 @@ export class LoginComponent {
   hide = true;
   form: FormGroup;
   constructor(
+    private router: Router,
     private fb: FormBuilder
   ) {
     this.form = fb.group({
@@ -25,6 +27,11 @@ export class LoginComponent {
 
   submit() {
     console.log('SUBMIT');
+    this.router.navigate(['/admin/myposts'], {
+      queryParams: {
+        status: 'published'
+      }
+    });
   }
 
   get email() {
