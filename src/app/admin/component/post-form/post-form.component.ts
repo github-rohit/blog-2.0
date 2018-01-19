@@ -22,7 +22,7 @@ export class PostFormComponent implements OnDestroy {
       description: [''],
       image: [''],
       category: [''],
-      tags: ['']
+      tags: [[]]
     });
   }
 

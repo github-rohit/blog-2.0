@@ -9,9 +9,11 @@ import { ProfileViewComponent } from './component/profile-view/profile-view.comp
 import { PostFormComponent } from './component/post-form/post-form.component';
 import { MyPostsComponent } from './component/my-posts/my-posts.component';
 import { AutoResizeTextareaDirective } from './directive/auto-resize-textarea.directive';
+import {RlTagInputModule} from 'angular2-tag-input';
 
 @NgModule({
   imports: [
+    RlTagInputModule,
     SharedModule,
     CommonModule,
     FormsModule,
@@ -38,7 +40,7 @@ import { AutoResizeTextareaDirective } from './directive/auto-resize-textarea.di
     AutoResizeTextareaDirective
   ],
   exports: [
-
+    RlTagInputModule
   ]
 })
 export class AdminModule { }

@@ -11,8 +11,11 @@ body {
     font-family: 'Roboto', sans-serif;
     padding-top: 90px;
     padding-bottom: 30px;
+    height: auto;
     min-height: 100%;
 }
+html.body-white,
+html.body-white body,
 body.body-white {
     background: #FFF;
 }
