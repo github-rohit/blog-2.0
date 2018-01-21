@@ -411,3 +411,14 @@ a {
 .category-nav a:not(:hover) {
     color: #666;
 }
+
+/*
+*/
+.error-heading {
+    font-size: 5em;
+    color: #000;
+}
+.error-message {
+    font-size: 3em;
+    font-weight: 300;
+}

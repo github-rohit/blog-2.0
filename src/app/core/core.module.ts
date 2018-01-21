@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
 import { DataService } from '../shared/services/data.service';
+import { AuthorComponent } from './component/author/author.component';
 
 @NgModule({
   imports: [
@@ -17,14 +18,18 @@ import { DataService } from '../shared/services/data.service';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forChild([])
+    RouterModule.forChild([{
+      path: 'author/:id/:name',
+      component: AuthorComponent
+    }])
   ],
   declarations: [
     NavbarComponent,
     SignupComponent,
     LoginComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    AuthorComponent
   ],
   providers: [
     DataService

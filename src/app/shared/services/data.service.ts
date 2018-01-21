@@ -19,6 +19,12 @@ export class DataService {
       .catch(this.handleError);
   }
 
+  getByQuery(query) {
+    return this.http.get(this.url + '?'  + query)
+      .map(response => response.json())
+      .catch(this.handleError);
+  }
+
   getById(id: string) {
     return this.http.get(this.url + '/' + id)
       .map(response => response.json())

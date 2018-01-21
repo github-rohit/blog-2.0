@@ -1,6 +1,8 @@
-import { ActivatedRoute } from '@angular/router';
+import { PageEvent } from '@angular/material';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from './../../../shared/services/post.service';
 import { Component, OnInit } from '@angular/core';
+import { Post } from '../../../shared/models/post';
 
 @Component({
   selector: 'my-posts',
@@ -10,19 +12,40 @@ import { Component, OnInit } from '@angular/core';
 export class MyPostsComponent {
   isPublished = true;
   isDraft = false;
-  posts;
+  posts: Post[];
   status;
 
+  // MatPaginator Inputs
+  length = 0;
+  pageSize = 10;
+  pageSizeOptions = [10, 25, 100];
+
   constructor(
-    private router: ActivatedRoute,
-    postService: PostService) {
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private postService: PostService) {
     this.posts = [];
-    this.router.queryParamMap.subscribe(queryMap => {
-       this.status = queryMap.get('status');
-       this.activelink();
+    this.activatedRoute.queryParamMap.subscribe((qry: any) => {
+      this.status = qry.get('status');
+      this.getPosts(qry.params);
+      this.activelink();
     });
-    postService.getAll().subscribe(posts => {
-      this.posts = posts.json();
+  }
+
+  getPosts(qry) {
+    this.postService.getPostByQuery(qry).subscribe(res => {
+      this.posts = res.posts;
+      this.length = res.total;
+    });
+  }
+
+  pageChange(event: PageEvent) {
+    this.router.navigate(['/admin/myposts'], {
+      queryParams: {
+        status: this.status,
+        pageIndex: event.pageIndex + 1,
+        pageSize: event.pageSize
+      }
     });
   }
 

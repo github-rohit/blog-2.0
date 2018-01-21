@@ -14,7 +14,7 @@
         </div>
         <div class="col text-right align-self-center">
             <i>BY
-                <a [routerLink]="['/author/', post.created_by]">{{post.author[0].name}}</a>
+                <a [routerLink]="['/author/', post.created_by, post.author[0].name | replaceWithDash]">{{post.author[0].name}}</a>
               </i>
               <i class="fa fa-circle"></i>
               {{post.created_on | date:longDate}}         

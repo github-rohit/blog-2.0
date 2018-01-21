@@ -38,6 +38,7 @@ import { ReplaceWithDashPipe } from './pipes/replace-with-dash.pipe';
     PostCommentComponent,
     TinymceEditorComponent,
     TruncatePipe,
+    ReplaceWithDashPipe,
     CategoryComponent
   ],
   providers: [

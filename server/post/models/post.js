@@ -54,25 +54,36 @@ dbSchema.methods.toJSON = function () {
 const Post = mongoose.model('Post', dbSchema);
 
 Post.getPosts = function (qry) {
-    const query = getQuery(qry)
+    const qObj = getQuery(qry)
 
-    return Post.aggregate(query, (err, posts) => {
-        if (err) {
-            return Promise.reject();
-        } else {
-            return Promise.resolve(posts);
-        }
-    })	    
+    return Post.aggregate(qObj.query).then(posts => {
+        return new Promise((resolve, reject) => {
+            Post.count(qObj.match, (err, count) => {
+                if (err) {
+                    resolve({
+                        posts: posts
+                    });
+
+                } else {
+                    resolve({
+                        total: count,
+                        posts: posts
+                    });
+                }
+            });
+        });        
+    });	    
 }
 
-function getQuery(qry) { console.log(qry)
-    const page = qry.page || 1;
-    const limit = qry.limit || 20;
+function getQuery(qry) { 
+    const page = qry.pageIndex || 1;
+    const limit = qry.pageSize ? parseInt(qry.pageSize) : 10;
     const skip = page  > 1 ? limit * ( page - 1 ) : 0;
+    const status = qry.status ? qry.status.toUpperCase() : '';
 
     var query = [];
     var match = {
-        status: POST_STATUS[qry.status] || POST_STATUS.PUBLISHED
+        status: POST_STATUS[status] || POST_STATUS.PUBLISHED
     };
     
     if (qry.id) {
@@ -127,7 +138,10 @@ function getQuery(qry) { console.log(qry)
         }
     }];
     
-    return query;
+    return {
+        query: query,
+        match: match
+    };
 }
 
 module.exports = {Post};

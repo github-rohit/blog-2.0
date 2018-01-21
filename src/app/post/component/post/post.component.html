@@ -1,5 +1,11 @@
-<div>
-  <ng-container *ngFor="let post of posts">
-    <post-card [post]="post"></post-card>
-  </ng-container>
-</div>
+<ng-container *ngIf="norecord">
+  <h1 class="error-heading">:( OOPS</h1>
+  <p class="error-message">No record found.</p>
+</ng-container>
+<ng-container *ngFor="let post of posts">
+  <post-card [post]="post"></post-card>
+</ng-container>
+<ng-container *ngIf="posts.length">
+    <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="pageChange($event)">
+      </mat-paginator>
+</ng-container>
