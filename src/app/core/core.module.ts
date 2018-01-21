@@ -9,6 +9,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
+import { DataService } from '../shared/services/data.service';
 
 @NgModule({
   imports: [
@@ -24,6 +25,9 @@ import { ResetPasswordComponent } from './component/reset-password/reset-passwor
     LoginComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent
+  ],
+  providers: [
+    DataService
   ],
   exports: [
     NavbarComponent,

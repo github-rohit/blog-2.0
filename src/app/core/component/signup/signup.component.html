@@ -15,6 +15,7 @@
               <mat-form-field>
                 <input formControlName="email" type="email" matInput placeholder="Email" required>
                 <mat-error *ngIf="email.errors">
+                  <p *ngIf="email.errors.Unique"><i class="fa fa-exclamation-circle"></i> This email id <b>{{email.value }}</b> already registered with us.</p>
                   <p *ngIf="email.errors.required"><i class="fa fa-exclamation-circle"></i> You can't leave this empty.</p>
                   <p *ngIf="!email.errors.required && email.errors.email"><i class="fa fa-exclamation-circle"></i> Please enter correct email address.</p>
                 </mat-error>

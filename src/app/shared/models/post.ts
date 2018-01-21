@@ -7,8 +7,11 @@ export interface Post {
   category: string;
   tags: string;
   created_by: string;
-  date: string;
+  created_on: string;
   status: string;
   post_reference_id: string;
   schedule_at: string;
+  author: {
+    name: string
+  };
 }

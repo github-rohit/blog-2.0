@@ -3,7 +3,7 @@
 
 html, body {
     background: #F1F3F6;
-    color: #3F3F3F;
+    color: #404040;
     height: 100%;
 }
 
@@ -13,6 +13,8 @@ body {
     padding-bottom: 30px;
     height: auto;
     min-height: 100%;
+    font-size: 16px;
+    line-height: 1.7;
 }
 html.body-white,
 html.body-white body,
@@ -30,14 +32,27 @@ h1, h2, h3, h4, h5, h6 {
 .family-roboto-light {
     font-weight: 300;
 }
+.family-merriweather,
+.family-merriweather-light {
+    font-family: 'Merriweather', sans-serif;
+}
+.family-merriweather-light {
+    font-weight: 300;
+}
 a {
     color: #3f51b5;
 }
 .text-brand {
     color: #3f51b5;
 }
+.font-weight-bold {
+    font-weight: 500 !important;
+}
 .mr-t-lg {
     padding-top: 30px;
+}
+.mr-t-sm {
+    padding-top: 5px;
 }
 
 .mat-form-field ,
@@ -97,23 +112,44 @@ a {
     margin-top: 0;
     color: #3f51b5;
 }
-
+/*
+*/
 .post-card {
     background: #FFF;
     padding: 15px;
     margin-bottom: 30px;
+    border-radius: 2px;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
 }
-
 .post-card h2 {
     font-size: 1.7em;
     line-break: 1.5;
 }
-
 .post-card h2 a {
     color: #000;
-    font-weight: 300;
+    font-weight: 400;
+    font-size: 24px;
+}
+.post-card .col-image {
+    min-width: 220px;
+    max-width: 220px;
+    padding-left: 0;
+}
+.post-card .byline {
+    margin-top: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #9f9f9f;
+}
+.post-card .byline .fa {
+    font-size: 4px;
+    vertical-align: middle;
+    margin: 0 5px;
+    margin-top: -2px;
 }
 
+/*
+*/
 .ui-post-page {
     background: #FFF;
     padding: 15px 30px;
@@ -128,6 +164,17 @@ a {
     display: block;
     border: 1px solid #EAEAEA;
     max-width: 100%;
+}
+.ui-post-page .byline {
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #9f9f9f;
+}
+.ui-post-page .byline .fa {
+    font-size: 4px;
+    vertical-align: middle;
+    margin: 0 5px;
+    margin-top: -2px;
 }
 
 .ui-add-comment{
@@ -348,4 +395,19 @@ a {
 }
 .form-post-title-error {
     margin-top: -25px;
+}
+
+.category-nav {
+    padding: 0;
+    margin: 0;
+    display: block;
+    list-style: none;
+}
+.category-nav a {
+    display: block;
+    padding: 2px 0;
+    font-size: 14px;
+}
+.category-nav a:not(:hover) {
+    color: #666;
 }

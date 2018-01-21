@@ -1,6 +1,8 @@
+import { DataService } from './../../../shared/services/data.service';
 import { ComparePasswordValidation } from './../../validation/compare-password.validation';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'sign-up',
@@ -12,7 +14,8 @@ export class SignupComponent {
   hide = true;
   form: FormGroup;
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private http: Http
   ) {
     this.form = fb.group({
       email: ['', [
@@ -36,8 +39,19 @@ export class SignupComponent {
   }
 
   submit() {
-    console.log('SUBMIT');
-    this.success = true;
+    if (!this.form.valid) {
+      return;
+    }
+
+    this.http.post('/api/signup', this.form.value).subscribe(() => {
+      this.success = true;
+    }, (error: Response) => {
+      if (error.status === 400) {
+        this.form.controls['email'].setErrors(error.json());
+      } else {
+        throw error;
+      }
+    });
   }
 
   get email() {

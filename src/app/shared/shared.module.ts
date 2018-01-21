@@ -1,3 +1,4 @@
+import { DataService } from './services/data.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CommentService } from './services/comment.service';
@@ -9,6 +10,9 @@ import { NgModule } from '@angular/core';
 import { MatComponentModule } from './component/mat-component/mat-component.module';
 import { PostCommentComponent } from './component/post-comment/post-comment.component';
 import { TinymceEditorComponent } from './component/tinymce-editor/tinymce-editor.component';
+import { TruncatePipe } from './pipes/truncate.pipe';
+import { CategoryComponent } from './component/category/category.component';
+import { CategoryService } from './services/category.service';
 
 @NgModule({
   imports: [
@@ -22,17 +26,23 @@ import { TinymceEditorComponent } from './component/tinymce-editor/tinymce-edito
   declarations: [
     PostCardComponent,
     PostCommentComponent,
-    TinymceEditorComponent
+    TinymceEditorComponent,
+    TruncatePipe,
+    CategoryComponent
   ],
   exports: [
     MatComponentModule,
     PostCardComponent,
     PostCommentComponent,
-    TinymceEditorComponent
+    TinymceEditorComponent,
+    TruncatePipe,
+    CategoryComponent
   ],
   providers: [
     PostService,
-    CommentService
+    CommentService,
+    DataService,
+    CategoryService
   ]
 })
 export class SharedModule { }

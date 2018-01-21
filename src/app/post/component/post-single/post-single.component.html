@@ -3,14 +3,23 @@
     <div *ngIf="post">
       <div class="ui-post-page">
         <h2>{{post.title}}</h2>
+        <div class="byline small">
+            <i>BY
+                <a [routerLink]="['/author/', post.created_by]">{{post.author[0].name}}</a>
+              </i>
+              <i class="fa fa-circle"></i>
+              {{post.created_on | date:longDate}}             
+        </div>
         <hr>
         <div class="description">
-          <img src="https://ksassets.timeincuk.net/wp/uploads/sites/55/2017/10/2017_ResevoirDogs_Press_191017-920x584.jpg">{{post.body}}</div>
+          <img *ngIf="post.image" [src]="post.image">
+          <div [innerHTML]="post.description"></div>
+        </div>
       </div>
       <post-comment [post-id]="postId"></post-comment>
     </div>
   </div>
   <div class="col-md-3">
-
+    <app-category></app-category>
   </div>
 </div>

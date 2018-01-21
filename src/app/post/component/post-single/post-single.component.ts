@@ -21,8 +21,8 @@ export class PostSingleComponent {
 
     this.postId = this.route.snapshot.paramMap.get('id');
 
-    postService.get(this.postId).subscribe(post => {
-      this.post = post.json();
+    postService.getById(this.postId).subscribe(post => {
+      this.post = post[0];
     });
 
   }

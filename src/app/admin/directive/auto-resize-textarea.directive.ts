@@ -11,10 +11,11 @@ export class AutoResizeTextareaDirective implements AfterContentInit {
     this.setHeightToScrollHeight();
   }
 
+  @HostListener('keydown.enter') onKeydownEnter() {
+    event.preventDefault();
+  }
+
   @HostListener('keyup') onKeyup() {
-    if (event.code === 'Enter') {
-      event.preventDefault();
-    }
     this.setHeightToScrollHeight();
   }
 

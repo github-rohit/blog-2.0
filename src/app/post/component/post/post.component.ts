@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { PostService } from './../../../shared/services/post.service';
 import { Post } from './../../../shared/models/post';
 import { Component, OnInit } from '@angular/core';
@@ -10,10 +11,15 @@ import { Component, OnInit } from '@angular/core';
 export class PostComponent {
   // posts: Post[] = [];
   posts;
-  constructor(postService: PostService) {
+  constructor(
+    private router: ActivatedRoute,
+    private postService: PostService) {
     this.posts = [];
-    postService.getAll().subscribe(posts => {
-      this.posts = posts.json();
+    this.router.queryParamMap.subscribe((qry) => {
+      console.log(qry.get('limit'));
+    });
+    this.postService.getAll().subscribe(posts => {
+      this.posts = posts;
     });
   }
 

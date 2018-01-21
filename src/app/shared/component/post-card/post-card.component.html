@@ -1,5 +1,25 @@
-<div class="post-card">
-  <h2><a [routerLink]="['/', post.id, post.title]">{{post.title}}</a></h2>
-  <p>{{post.body}}</p>
-  <div><a [routerLink]="['/', post.id, post.title]">READ MORE</a></div>
-</div>
+<article class="post-card">
+  <div class="description row">
+    <div class="col col-image" *ngIf="post.image">
+      <img [src]="post.image" class="img-fluid">
+    </div>
+    <div class="col">
+      <h2>
+        <a [routerLink]="['/', post._id, post.title]">{{post.title}}</a>
+      </h2>
+      <div>{{post.description | truncate}}</div>
+      <div class="byline small row">
+        <div class="col">
+            <a style="margin-left: -15px;" [routerLink]="['/', post._id, post.title]" mat-button color="primary">READ MORE</a>
+        </div>
+        <div class="col text-right align-self-center">
+            <i>BY
+                <a [routerLink]="['/author/', post.created_by]">{{post.author[0].name}}</a>
+              </i>
+              <i class="fa fa-circle"></i>
+              {{post.created_on | date:longDate}}         
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

@@ -24,6 +24,7 @@ import { PostSingleComponent } from './component/post-single/post-single.compone
   ],
   exports: [
     PostComponent
-  ]
+  ],
+  providers: []
 })
 export class PostModule { }
