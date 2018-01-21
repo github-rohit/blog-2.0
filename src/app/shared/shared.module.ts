@@ -13,6 +13,7 @@ import { TinymceEditorComponent } from './component/tinymce-editor/tinymce-edito
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { CategoryComponent } from './component/category/category.component';
 import { CategoryService } from './services/category.service';
+import { ReplaceWithDashPipe } from './pipes/replace-with-dash.pipe';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { CategoryService } from './services/category.service';
     PostCommentComponent,
     TinymceEditorComponent,
     TruncatePipe,
-    CategoryComponent
+    CategoryComponent,
+    ReplaceWithDashPipe
   ],
   exports: [
     MatComponentModule,

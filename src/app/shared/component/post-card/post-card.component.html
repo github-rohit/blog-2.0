@@ -5,12 +5,12 @@
     </div>
     <div class="col">
       <h2>
-        <a [routerLink]="['/', post._id, post.title]">{{post.title}}</a>
+        <a [routerLink]="['/', post._id, post.title | replaceWithDash]">{{post.title}}</a>
       </h2>
       <div>{{post.description | truncate}}</div>
       <div class="byline small row">
         <div class="col">
-            <a style="margin-left: -15px;" [routerLink]="['/', post._id, post.title]" mat-button color="primary">READ MORE</a>
+            <a style="margin-left: -15px;" [routerLink]="['/', post._id, post.title | replaceWithDash]" mat-button color="primary">READ MORE</a>
         </div>
         <div class="col text-right align-self-center">
             <i>BY
