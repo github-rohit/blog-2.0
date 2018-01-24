@@ -7,7 +7,6 @@ module.exports = (req, res) => {
     body.status = POST_STATUS[body.status];
 
     const post = new Post(body);
-
     post.save().then(()=> {
         res.send(post);
     }).catch(e => {

@@ -24,11 +24,44 @@ const dbSchema = new mongoose.Schema({
         required: true,
         minlength: 3
     },
-    password: {
+    passwd: {
         type: String,
         required: true,
         minlength: 6
     },
+	aboutme: {
+		type: String
+	},
+	gender: {
+		type: String
+	},
+	country: {
+		type: String
+	},
+	website: {
+		type: String
+	},
+	facebook: {
+		type: String
+	},
+	twitter: {
+		type: String
+	},
+	google_plus: {
+		type: String
+	},
+	linkedIn: {
+		type: String
+	},
+	instagram: {
+		type: String
+	},
+	tumblr: {
+		type: String
+	},
+	pinterest: {
+		type: String
+	},
     status: {
         type: String,
         default: USER_STATUS.PENDING
@@ -49,16 +82,32 @@ dbSchema.methods.toJSON = function () {
     const user = this;
     const userObj = user.toObject();
 
-    return _.pick(userObj, ['_id', 'email', 'name', 'status']);
+    return _.pick(userObj, [
+        '_id', 
+        'email', 
+        'name', 
+        'aboutme',
+        'gender',
+        'country',
+        'website',
+        'facebook',
+        'twitter',
+        'google_plus',
+        'linkedIn',
+        'instagram',
+        'tumblr',
+        'pinterest',
+        'status'
+    ]);
 }
 
 dbSchema.pre('save', function (next) {
     const user = this;
 
-    if (user.isModified('password')) {
+    if (user.isModified('passwd')) {
         bcrypt.genSalt(10, (err, salt) => {
-            bcrypt.hash(user.password, salt, (err, hash) => {
-                user.password = hash;
+            bcrypt.hash(user.passwd, salt, (err, hash) => {
+                user.passwd = hash;
                 next();
             });
         });

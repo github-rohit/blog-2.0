@@ -10,6 +10,7 @@ import { PostFormComponent } from './component/post-form/post-form.component';
 import { MyPostsComponent } from './component/my-posts/my-posts.component';
 import { AutoResizeTextareaDirective } from './directive/auto-resize-textarea.directive';
 import {RlTagInputModule} from 'angular2-tag-input';
+import { UserService } from './services/user.service';
 
 @NgModule({
   imports: [
@@ -41,6 +42,7 @@ import {RlTagInputModule} from 'angular2-tag-input';
   ],
   exports: [
     RlTagInputModule
-  ]
+  ],
+  providers: [UserService]
 })
 export class AdminModule { }

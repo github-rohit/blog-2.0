@@ -1,4 +1,4 @@
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
 
@@ -6,7 +6,7 @@ import { DataService } from './data.service';
 export class PostService extends DataService {
   params: string;
 
-  constructor(http: Http) {
+  constructor(http: HttpClient) {
     super('/api/posts', http);
   }
 

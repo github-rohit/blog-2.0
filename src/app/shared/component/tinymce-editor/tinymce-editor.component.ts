@@ -33,7 +33,7 @@ export class TinymceEditorComponent implements AfterViewInit, OnDestroy {
         'insertdatetime media nonbreaking save table contextmenu directionality',
         'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc help autoresize'
       ],
-      toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent table | link image, media | forecolor backcolor',
+      toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent table | link image, media | forecolor backcolor | code',
       image_advtab: true,
       skin_url: '../../assets/skins/lightgray',
       setup: editor => {

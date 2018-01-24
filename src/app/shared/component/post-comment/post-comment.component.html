@@ -3,21 +3,23 @@
     <h4>{{comments.length}} Comments</h4>
   </div>
   <div class="ui-add-comment-body">
-    <ng-container *ngFor="let comment of comments">
+    <ng-container *ngFor="let c of comments">
       <div class="comment-row">
-        <p>{{comment.body}}</p>
+        <p>{{c.comment}}</p>
         <div class="byline small">
-          <span>by: </span>
-          <a [routerLink]="['user', comment.id]" routerLink="{{comment.name}}">{{comment.name}}</a>
+          <i>by
+            <a [routerLink]="['/author/', c.created_by, c.author[0].name | replaceWithDash]">{{c.author[0].name}}</a>
+          </i>
+          <i class="fa fa-circle"></i>
+          {{c.created_on | date:longDate}}
         </div>
       </div>
     </ng-container>
   </div>
   <div class="ui-add-comment-footer">
     <form [formGroup]="form" (ngSubmit)="submit()">
-      <mat-form-field>
-        <textarea matInput placeholder="Add Comment"></textarea>
-      </mat-form-field>
+      <textarea class="form-control post-comment-form-control" rows="3" placeholder="Add Comment"></textarea>
+      <button mat-raised-button color="primary" [disabled]="form.invalid">Add Comment</button>
     </form>
     Please
     <a routerLink="/login">login</a> for add Comment.

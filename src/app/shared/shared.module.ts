@@ -14,6 +14,11 @@ import { TruncatePipe } from './pipes/truncate.pipe';
 import { CategoryComponent } from './component/category/category.component';
 import { CategoryService } from './services/category.service';
 import { ReplaceWithDashPipe } from './pipes/replace-with-dash.pipe';
+import { UserService } from './services/user.service';
+import { ToastComponent } from './component/toast/toast.component';
+import { RequestInterceptor } from './services/request-interceptor.service';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   imports: [
@@ -21,7 +26,7 @@ import { ReplaceWithDashPipe } from './pipes/replace-with-dash.pipe';
     FormsModule,
     ReactiveFormsModule,
     MatComponentModule,
-    HttpModule,
+    HttpClientModule,
     RouterModule.forChild([])
   ],
   declarations: [
@@ -30,7 +35,8 @@ import { ReplaceWithDashPipe } from './pipes/replace-with-dash.pipe';
     TinymceEditorComponent,
     TruncatePipe,
     CategoryComponent,
-    ReplaceWithDashPipe
+    ReplaceWithDashPipe,
+    ToastComponent
   ],
   exports: [
     MatComponentModule,
@@ -39,13 +45,20 @@ import { ReplaceWithDashPipe } from './pipes/replace-with-dash.pipe';
     TinymceEditorComponent,
     TruncatePipe,
     ReplaceWithDashPipe,
-    CategoryComponent
+    CategoryComponent,
+    ToastComponent
   ],
   providers: [
     PostService,
     CommentService,
     DataService,
-    CategoryService
+    CategoryService,
+    UserService, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true,
+      providers: [AuthService]
+    }
   ]
 })
 export class SharedModule { }

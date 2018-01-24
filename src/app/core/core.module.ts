@@ -11,6 +11,7 @@ import { ForgotPasswordComponent } from './component/forgot-password/forgot-pass
 import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
 import { DataService } from '../shared/services/data.service';
 import { AuthorComponent } from './component/author/author.component';
+import { PageLoaderComponent } from './component/page-loader/page-loader.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { AuthorComponent } from './component/author/author.component';
     LoginComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-    AuthorComponent
+    AuthorComponent,
+    PageLoaderComponent
   ],
   providers: [
     DataService
@@ -37,7 +39,8 @@ import { AuthorComponent } from './component/author/author.component';
   exports: [
     NavbarComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    PageLoaderComponent
   ]
 })
 export class CoreModule { }

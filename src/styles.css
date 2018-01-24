@@ -100,6 +100,9 @@ a {
 .profile-container .profile-container-left img {
     max-width: 220px;
 }
+.profile-container h2 {
+    margin: 0;
+}
 .profile-container .info p {
     margin-bottom: 5px;
 }
@@ -111,6 +114,17 @@ a {
     font-weight: lighter;
     margin-top: 0;
     color: #3f51b5;
+}
+.profile-container p a {
+    font-size: 14px;
+    font-weight: lighter;
+}
+.profile-container p a .fa {
+    width: 20px;
+}
+.profile-container p a:not(:hover) {
+    color: #666;
+    text-decoration: none;
 }
 /*
 */
@@ -193,8 +207,8 @@ a {
     padding: 15px;
 }
 .ui-add-comment .comment-row p {
+    font-size: 14px;
     font-weight: 300;
-    color: #666;
     margin-bottom: 5px
 }
 .ui-add-comment .comment-row:not(:last-child) {
@@ -203,12 +217,31 @@ a {
     border-bottom: 1px dashed #EAEAEA;
 }
 .ui-add-comment .byline {
-    color: #999;
-    font-style: italic;
+    margin-top: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #9f9f9f;
+}
+.ui-add-comment .byline .fa {
+    font-size: 4px;
+    vertical-align: middle;
+    margin: 0 5px;
+    margin-top: -2px;
 }
 .ui-add-comment .ui-add-comment-footer {
     background: #F7F9FA;
     padding: 15px;
+}
+.post-comment-form-control,
+.post-comment-form-control:focus {
+    border-radius: 0;
+    margin-bottom: 15px;
+    outline: none;
+    resize: none;
+    box-shadow: none;
+}
+.post-comment-form-control:focus {
+    border-color: #3f51b5;
 }
 /* 
 * Tinymce code
@@ -258,7 +291,9 @@ a {
 .mce-top-part::before {
 	display: none;
 }
-
+.mce-primary button, .mce-primary button i{
+    color: #3f3f3f;
+}
 
 /* 
  */
@@ -388,7 +423,7 @@ a {
     width: 100%;
     border: 0;
     font-family: 'Merriweather', serif;
-    font-size: 32px;
+    font-size: 1.7em;
     line-height: 1.5;
     outline: none;
     margin-bottom: 15px;

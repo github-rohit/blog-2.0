@@ -1,13 +1,12 @@
 import { HttpClient } from '@angular/common/http';
+import { DataService } from './../../shared/services/data.service';
 import { Injectable } from '@angular/core';
-import { DataService } from './data.service';
 
 @Injectable()
-export class CommentService extends DataService {
-  params: string;
+export class UserService extends DataService {
 
   constructor(http: HttpClient) {
-    super('/api/comment', http);
+    super('/api/author', http);
   }
 
 }

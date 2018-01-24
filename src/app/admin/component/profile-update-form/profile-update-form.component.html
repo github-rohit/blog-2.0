@@ -1,25 +1,27 @@
+
+<toast-message [toast]="toast"></toast-message>
 <div class="row mr-t-lg ">
   <div class="col ml-md-auto mr-md-auto">
-    <div class="card">
+    <div class="card" *ngIf="user">
       <div class="card-body profile-container">
         <div class="profile-container-left">
           <img src="/assets/images/user.png">
         </div>
         <div>
-          <h2>rohit kumar gautam</h2>
-          <p>mygmforsm@gmail.com</p>
+          <h2>{{user.name}}</h2>
+          <p><i class="fa fa-envelope-o"></i> {{user.email}}</p>
           <form [formGroup]="form" (ngSubmit)="submit()">
             <mat-form-field>
-              <textarea formControlName="aboutme" matInput placeholder="About me"></textarea>
+              <textarea formControlName="aboutme" matInput autoResizeTextarea placeholder="About me"></textarea>
             </mat-form-field>
             <mat-form-field>
               <input formControlName="website" type="url" matInput placeholder="website">
             </mat-form-field>
             <mat-form-field>
-                <mat-select formControlName="gender" placeholder="Gender">
-                  <mat-option value="option">Male</mat-option>
-                  <mat-option value="option">Female</mat-option>
-                  <mat-option value="option">Other</mat-option>
+                <mat-select formControlName="gender" placeholder="Gender" [value]="user.gender">
+                  <mat-option value="male">Male</mat-option>
+                  <mat-option value="female">Female</mat-option>
+                  <mat-option value="other">Other</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field>
@@ -50,7 +52,9 @@
                 <input formControlName="pinterest" type="text" matInput placeholder="Pinterest">
               </mat-form-field>
             </div>
-            <button mat-raised-button color="primary">UPDATE</button>
+            <div class="fixed-wrapper-btns">
+                <button mat-raised-button color="primary">UPDATE</button>
+            </div>
           </form>
         </div>
       </div>

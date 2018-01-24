@@ -1,3 +1,5 @@
+import { ActivatedRoute } from '@angular/router';
+import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile-view.component.css']
 })
 export class ProfileViewComponent implements OnInit {
+  userId: string;
+  user;
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private userService: UserService) {
 
-  ngOnInit() {
+    this.userService.getById('5a6363375254060f788b2fd2').subscribe((user) => {
+      this.user = user[0];
+    }, error => {
+
+    });
   }
+
+  ngOnInit() { }
 
 }

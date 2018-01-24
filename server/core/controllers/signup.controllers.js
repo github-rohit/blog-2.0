@@ -6,7 +6,7 @@ module.exports = (req, res) => {
     const user = new User({
         email: data.email,
         name: data.name,
-        password: data.password
+        passwd: data.passwd
     });
     
     user.save(user).then(()=> {

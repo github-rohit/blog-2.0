@@ -26,8 +26,8 @@ export class PostCommentComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.commentService.getCommentForPost(this.postId).subscribe(comments => {
-      this.comments = comments.json();
+    this.commentService.getById(this.postId).subscribe(comments => {
+      this.comments = comments;
     });
   }
 
