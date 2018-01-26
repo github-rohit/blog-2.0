@@ -22,11 +22,11 @@ export class DataService {
       .catch(this.handleError);
   }
 
-  getByQuery(query: string) {
-    return this.http.get(this.url + '?'  + query)
-      .map(response => response)
-      .catch(this.handleError);
-  }
+  // getByQuery(query: string) {
+  //   return this.http.get(this.url + '?'  + query)
+  //     .map(response => response)
+  //     .catch(this.handleError);
+  // }
 
   getById(id: string) {
     return this.http.get(this.url + '/' + id)
