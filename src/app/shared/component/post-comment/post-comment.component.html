@@ -11,7 +11,7 @@
             <a [routerLink]="['/author/', c.created_by, c.author[0].name | replaceWithDash]">{{c.author[0].name}}</a>
           </i>
           <i class="fa fa-circle"></i>
-          {{c.created_on | date:longDate}}
+          {{c.created_on | date: 'MMM d, y'}}
         </div>
       </div>
     </ng-container>
