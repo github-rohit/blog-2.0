@@ -9,7 +9,6 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 
-@Injectable()
 export class DataService {
   static pendingReqCount = 0;
   static pendingReq: EventEmitter<number> = new EventEmitter();
