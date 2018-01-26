@@ -35,7 +35,6 @@ import { NotAuthGuard } from './services/not-auth-guard.service';
     PageLoaderComponent
   ],
   providers: [
-    DataService,
     NotAuthGuard
   ],
   exports: [
