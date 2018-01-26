@@ -23,10 +23,10 @@ export class LoginComponent {
   ) {
     this.returnUrl = this.activatedRoute.snapshot.queryParamMap.get('returnUrl');
     this.form = fb.group({
-      email: ['rohit.k@ezdia.com', [
+      email: ['', [
         Validators.required,
         Validators.email]],
-        passwd: ['123456', [
+        passwd: ['', [
         Validators.required
       ]]
     });
