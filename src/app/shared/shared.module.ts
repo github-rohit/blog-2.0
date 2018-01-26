@@ -52,7 +52,6 @@ import { AuthGuard } from './services/auth-guard.service';
   providers: [
     PostService,
     CommentService,
-    DataService,
     CategoryService,
     UserService, {
       provide: HTTP_INTERCEPTORS,
