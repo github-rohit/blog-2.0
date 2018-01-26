@@ -1,3 +1,4 @@
+import { AuthService } from './../../../shared/services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
@@ -12,10 +13,11 @@ export class ProfileViewComponent implements OnInit {
   user;
 
   constructor(
+    private auth: AuthService,
     private route: ActivatedRoute,
     private userService: UserService) {
 
-    this.userService.getById('5a6363375254060f788b2fd2').subscribe((user) => {
+    this.userService.getById(this.auth.user._id).subscribe((user) => {
       this.user = user[0];
     }, error => {
 
