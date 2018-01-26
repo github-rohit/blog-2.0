@@ -1,7 +1,7 @@
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const ejs = require('ejs');
 
 const config = require('./config/config');
 const routes = require('./routes');
@@ -11,6 +11,9 @@ const server = express();
 const port = process.env.PORT;
 
 server.use(express.static(path.join(__dirname, '../dist')));
+server.set('view engine', 'ejs');
+// serve angular front end files from root path
+server.use('/server/', express.static('views', { redirect: false }));
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true}));
 
