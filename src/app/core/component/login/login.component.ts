@@ -1,4 +1,6 @@
-import { Router } from '@angular/router';
+import { AuthService } from './../../../shared/services/auth.service';
+import { HttpClient } from '@angular/common/http';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,27 +11,46 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class LoginComponent {
+  returnUrl;
   hide = true;
   form: FormGroup;
   constructor(
+    private activatedRoute: ActivatedRoute,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private authService: AuthService
   ) {
+    this.returnUrl = this.activatedRoute.snapshot.queryParamMap.get('returnUrl');
     this.form = fb.group({
-      email: ['', [
+      email: ['rohit.k@ezdia.com', [
         Validators.required,
         Validators.email]],
-      password: ['', [
+        passwd: ['123456', [
         Validators.required
       ]]
     });
   }
 
+  routeToAdmin() {
+    if (this.returnUrl) {
+      this.router.navigate([this.returnUrl]);
+    } else {
+      this.router.navigate(['/admin/myposts'], {
+        queryParams: {
+          status: 'published' 
+        }
+      });      
+    }
+  }
+
   submit() {
-    console.log('SUBMIT');
-    this.router.navigate(['/admin/myposts'], {
-      queryParams: {
-        status: 'published'
+    this.http.post('/api/login', this.form.value).subscribe((res: any) => {
+      this.authService.token = res.token;
+      this.routeToAdmin();
+    }, (res) => {
+      if (res.error) {
+        this.form.setErrors(res.error);
       }
     });
   }
@@ -39,7 +60,7 @@ export class LoginComponent {
   }
 
   get password() {
-    return this.form.get('password');
+    return this.form.get('passwd');
   }
 
 }

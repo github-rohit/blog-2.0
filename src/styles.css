@@ -99,6 +99,7 @@ a {
 }
 .profile-container .profile-container-left img {
     max-width: 220px;
+    filter: grayscale(100%);
 }
 .profile-container h2 {
     margin: 0;
@@ -456,4 +457,7 @@ a {
 .error-message {
     font-size: 3em;
     font-weight: 300;
+}
+.cdk-overlay-container {
+    z-index: 1040;
 }

@@ -35,10 +35,6 @@ function getQuery(qry) {
 			postId: qry.postId
 		}
 	}, {
-        $sort: {
-            created_on: -1
-        }
-    }, {
 		$lookup: {
 			from: "users",
 			localField: "created_by",

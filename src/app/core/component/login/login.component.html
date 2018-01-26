@@ -6,6 +6,10 @@
         <p class="text-muted small">Please Enter your email and password below.</p>
       </div>      
       <div class="card-body">
+        <mat-error *ngIf="form.errors">
+          <p *ngIf="form.errors.COULD_NOT_FOUND" class="text-center"><span class="badge badge-pill badge-danger"><i class="fa fa-exclamation-circle"></i> Couldn't find your Account</span></p>
+          <p *ngIf="form.errors.INCORRECT_ANSWER_ENTERED" class="text-center"><span class="badge badge-pill badge-danger"><i class="fa fa-exclamation-circle"></i> Invalid username or password</span></p>
+        </mat-error>
         <form [formGroup]="form" (ngSubmit)="submit()">
           <mat-form-field>
             <input formControlName="email" type="email" matInput placeholder="Email" required>
@@ -15,7 +19,7 @@
             </mat-error>
           </mat-form-field>
           <mat-form-field>
-            <input formControlName="password" [type]="hide ? 'password' : 'text'" matInput placeholder="Password" required>
+            <input formControlName="passwd" [type]="hide ? 'password' : 'text'" matInput placeholder="Password" required>
             <mat-error *ngIf="password.errors">
               <p *ngIf="password.errors.required"><i class="fa fa-exclamation-circle"></i> You can't leave this empty.</p>
               <p *ngIf="password.errors.minlength"><i class="fa fa-exclamation-circle"></i> Short passwords are easy to guess. Try one with at least {{password.errors.minlength.requiredLength}} characters.</p>

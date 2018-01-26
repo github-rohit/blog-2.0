@@ -1,8 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { DataService } from './../../../shared/services/data.service';
 import { ComparePasswordValidation } from './../../validation/compare-password.validation';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
 
 @Component({
   selector: 'sign-up',
@@ -15,7 +15,7 @@ export class SignupComponent {
   form: FormGroup;
   constructor(
     private fb: FormBuilder,
-    private http: Http
+    private http: HttpClient
   ) {
     this.form = fb.group({
       email: ['', [

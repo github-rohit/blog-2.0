@@ -147,7 +147,9 @@ dbSchema.methods.generateAuthToken = function () {
     const user = this;
     const access = "auth";
     const token = jwt.sign({
-        _id: user._id.toHexString(), access
+        _id: user._id.toHexString(),
+        name: user.name,
+        email: user.email, access
     }, process.env.SECRET).toString();
 
     user.tokens.push({ access, token });
@@ -157,20 +159,24 @@ dbSchema.methods.generateAuthToken = function () {
     });
 }
 
-dbSchema.statics.findByCredentials = function (email, password) {
+dbSchema.statics.findByCredentials = function (email, passwd) {
     var User = this;
 
     return User.findOne({ email }).then((user) => {
         if (!user) {
-            return Promise.reject();
+            return Promise.reject({
+                COULD_NOT_FOUND: true
+            });
         }
 
         return new Promise((resolve, reject) => {
-            bcrypt.compare(password, user.password, (err, res) => {
+            bcrypt.compare(passwd, user.passwd, (err, res) => {
                 if (res) {
                     resolve(user);
                 } else {
-                    reject();
+                    reject({
+                        INCORRECT_ANSWER_ENTERED: true
+                    });
                 }
             });
         });

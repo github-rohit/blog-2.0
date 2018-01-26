@@ -3,13 +3,15 @@ const { User } = require('../models/user');
 const _ = require('lodash');
 
 module.exports = (req, res) => {
-    var body = _.pick(req.body, ['email', 'password']);
+    const body = _.pick(req.body, ['email', 'passwd']);
 
-    User.findByCredentials(body.email, body.password).then((user) => {
+    return User.findByCredentials(body.email, body.passwd).then((user) => {
         return user.generateAuthToken().then((token) => {
-            res.header('x-auth', token).send(user);
+            res.header('x-auth', token).send({
+                token: token
+            });
         });
     }).catch((e) => {
-        res.status(400).send();
+        res.status(400).send(e);
     });
 }

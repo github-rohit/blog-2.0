@@ -1,3 +1,4 @@
+import { AuthService } from './../../../shared/services/auth.service';
 import { Observable } from 'rxjs/Observable';
 import { UserService } from './../../services/user.service';
 import { async } from '@angular/core/testing';
@@ -12,17 +13,20 @@ import { ToastComponent } from '../../../shared/component/toast/toast.component'
 })
 export class ProfileUpdateFormComponent implements OnInit {
   toast = {};
+  userId: string;
   user;
   form: FormGroup;
 
   constructor(
     private fb: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private auth: AuthService
   ) {
+    this.userId = auth.user._id;
   }
 
   submit() {
-    this.userService.update('5a6363375254060f788b2fd2', this.form.value).subscribe(user => {
+    this.userService.update(this.userId, this.form.value).subscribe(user => {
       this.toast = {
         classes: 'toast-success',
         message: 'Your profile has been updated successfully.'
@@ -36,10 +40,11 @@ export class ProfileUpdateFormComponent implements OnInit {
   }
 
   async ngOnInit() {
-   await this.userService.getById('5a6363375254060f788b2fd2').subscribe(user => {
-     this.user = user[0];
-     this.setFormValue();
-   });
+
+    await this.userService.getById(this.userId).subscribe(user => {
+      this.user = user[0];
+      this.setFormValue();
+    });
   }
 
   setFormValue() {

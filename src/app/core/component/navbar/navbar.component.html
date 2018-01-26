@@ -1,43 +1,61 @@
 <header class="navbar navbar-expand-md fixed-top mat-elevation-z6">
-<div class="container">
+  <div class="container">
     <div class="navbar-header">
       <button class="navbar-toggler" type="button">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-        </button>
-      <a class="navbar-brand" href="/"><img height="40" src="/assets/images/logo_white.svg" alt="nirmalrohit.com"><span>BLOG</span></a>
+      </button>
+      <a class="navbar-brand" href="/">
+        <img height="40" src="/assets/images/logo_white.svg" alt="nirmalrohit.com">
+        <span>BLOG</span>
+      </a>
     </div>
     <nav class="navbar flex-md-row">
       <ul class="navbar-nav mr-auto">
-        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"
-        ><a [routerLink]="['/']">HOME</a></li>
-        <li [routerLinkActive]="['active']"><a [routerLink]="['/admin/myposts/']" [queryParams]="{status: 'published'}">MY POSTS</a></li>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+          <a [routerLink]="['/']">HOME</a>
+        </li>
+        <li *ngIf="auth.isLoggedIn()" [routerLinkActive]="['active']">
+          <a [routerLink]="['/admin/myposts/']" [queryParams]="{status: 'published'}">MY POSTS</a>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li [routerLinkActive]="['active']"><a routerLink="login">LOGIN</a></li>
-        <li [routerLinkActive]="['active']"><a routerLink="signup">SIGN UP</a></li>
-      </ul>  
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a href="javascript:void(0)" class="user-avatar">
-            <img >
-            <span ></span>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a routerLink="user/profile" class="ui-myaccount clearfix">
-              <div class="user-avatar">
-                <img>
-                <span></span>
-              </div>
-              <span class="uname"></span>
-              <span class="email"></span>
-            </a></li>
-            <li><a routerLink="logout" class="ui-bg">LOGOUT</a></li>
-          </ul>
+        <li *ngIf="!auth.isLoggedIn()" [routerLinkActive]="['active']">
+          <a routerLink="login">LOGIN</a>
         </li>
-      </ul>    
+        <li *ngIf="!auth.isLoggedIn()" [routerLinkActive]="['active']">
+          <a routerLink="signup">SIGN UP</a>
+        </li>
+      </ul>
+      <ul *ngIf="auth.isLoggedIn()" class="nav navbar-nav navbar-right">
+        <li>
+          <a href="javascript:void(0)" class="user-avatar rounded-circle" [matMenuTriggerFor]="userMenu">
+            <img *ngIf="auth.user.image" [src]="auth.user.image">
+            <span>RG</span>
+          </a>
+        </li>
+        <mat-menu #userMenu="matMenu">
+          <ul class="user-dropdown">
+            <li>
+              <a routerLink="admin/profile" class="d-flex">
+                <div class="user-avatar rounded-circle align-self-center col">
+                  <img *ngIf="auth.user.image" [src]="auth.user.image">
+                  <span>RG</span>
+                </div>
+                <div class="col">
+                  <div class="uname">{{auth.user.name}}</div>
+                  <div class="email small">{{auth.user.email}}</div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="color" (click)="logout()">LOGOUT</a>
+            </li>
+          </ul>
+        </mat-menu>
+      </ul>
     </nav>
-</div>
+  </div>
 </header>

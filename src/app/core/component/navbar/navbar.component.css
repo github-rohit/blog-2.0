@@ -35,3 +35,59 @@
 	color: #FFF;
 	background: rgba(0, 0, 0, .12);
 }
+.user-dropdown li .user-avatar,
+.navbar-nav li .user-avatar {
+	max-width: 44px;
+	width: 44px;
+	height: 44px;
+	display: block;
+	border: 1px solid rgba(255, 255, 255, .1);
+	text-align: center;
+	padding: 0;
+}
+.user-dropdown li .user-avatar span,
+.navbar-nav li .user-avatar span {
+	float: left;
+	width: 100%;
+	color: #FFF;
+	font-size: 18px;
+    text-transform: uppercase;
+    line-height: 42px;
+    font-weight: lighter;
+}
+
+.user-dropdown {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.user-dropdown li a {
+	padding: 10px 22px;
+	display: block;
+	text-decoration: none;
+}
+.user-dropdown li .user-avatar {
+	border-color: #999
+}
+.user-dropdown li a .user-avatar span {
+	color: #3f51b5;
+}
+.user-dropdown li a .uname {
+	color: #000;
+	text-transform: capitalize;
+    font-size: 16px; 
+}
+.user-dropdown li a .email {
+	color: #999;
+}
+.user-dropdown li:last-child a.color {
+	margin-bottom: -8px;
+}
+.user-dropdown li a:hover,
+.user-dropdown li a.color {
+	background: #F5F5F5;
+}
+.user-dropdown li a.color {
+	cursor: pointer;
+	font-size: 14px;
+}

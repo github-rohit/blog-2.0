@@ -11,6 +11,7 @@ import { MyPostsComponent } from './component/my-posts/my-posts.component';
 import { AutoResizeTextareaDirective } from './directive/auto-resize-textarea.directive';
 import {RlTagInputModule} from 'angular2-tag-input';
 import { UserService } from './services/user.service';
+import { AuthGuard } from '../shared/services/auth-guard.service';
 
 @NgModule({
   imports: [
@@ -21,16 +22,24 @@ import { UserService } from './services/user.service';
     ReactiveFormsModule,
     RouterModule.forChild([{
       path: 'admin/myposts',
-      component: MyPostsComponent
+      component: MyPostsComponent, 
+      canActivate: [AuthGuard]
     }, {
       path: 'admin/post/new',
-      component: PostFormComponent
+      component: PostFormComponent, 
+      canActivate: [AuthGuard]
+    }, {
+      path: 'admin/post/:id',
+      component: PostFormComponent, 
+      canActivate: [AuthGuard]
     }, {
       path: 'admin/profile/update',
-      component: ProfileUpdateFormComponent
+      component: ProfileUpdateFormComponent, 
+      canActivate: [AuthGuard]
     }, {
       path: 'admin/profile',
-      component: ProfileViewComponent
+      component: ProfileViewComponent, 
+      canActivate: [AuthGuard]
     }])
   ],
   declarations: [

@@ -1,3 +1,4 @@
+<toast-message [toast]="toast"></toast-message>
 <div class="angular-new-form-warpper clearfix">
   <form [formGroup]="form">
     <div class="col-left">
@@ -9,7 +10,7 @@
         </div>
       </div>
       <textarea formControlName="description" style="display: none"></textarea>
-      <tinymce-editor [elementId]="'my-editor-id'" (onEditorKeyup)="keyupHandlerFunction($event)">
+      <tinymce-editor [initialContent]="description.value" [elementId]="'my-editor-id'" (onEditorKeyup)="keyupHandlerFunction($event)">
       </tinymce-editor>
     </div>
     <div class="col-right">

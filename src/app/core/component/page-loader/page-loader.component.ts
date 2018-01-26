@@ -8,16 +8,16 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./page-loader.component.css']
 })
 export class PageLoaderComponent implements OnInit {
-  @Input('show') show = true;
+  @Input('show') show = false;
 
   constructor(http: HttpClient ) { }
 
   ngOnInit() {
     DataService.pendingReq.subscribe((count) => {
       if (count === 0) {
-        this.show = false;
+        // this.show = false;
       } else {
-        this.show = true;
+        // this.show = true;
       }
     });
   }

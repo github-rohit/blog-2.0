@@ -19,6 +19,7 @@ import { ToastComponent } from './component/toast/toast.component';
 import { RequestInterceptor } from './services/request-interceptor.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
+import { AuthGuard } from './services/auth-guard.service';
 
 @NgModule({
   imports: [
@@ -56,9 +57,10 @@ import { AuthService } from './services/auth.service';
     UserService, {
       provide: HTTP_INTERCEPTORS,
       useClass: RequestInterceptor,
-      multi: true,
-      providers: [AuthService]
-    }
+      multi: true
+    },
+    AuthService,
+    AuthGuard
   ]
 })
 export class SharedModule { }

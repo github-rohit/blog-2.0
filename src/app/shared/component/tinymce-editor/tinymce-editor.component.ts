@@ -13,6 +13,7 @@ import {
 })
 export class TinymceEditorComponent implements AfterViewInit, OnDestroy {
   @Input() elementId: String;
+  @Input() initialContent: String;
   // tslint:disable-next-line:no-output-on-prefix
   @Output() onEditorKeyup = new EventEmitter<any>();
 
@@ -36,6 +37,9 @@ export class TinymceEditorComponent implements AfterViewInit, OnDestroy {
       toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent table | link image, media | forecolor backcolor | code',
       image_advtab: true,
       skin_url: '../../assets/skins/lightgray',
+      init_instance_callback: (editor: any) => {
+          editor && this.initialContent && this.editor.setContent(this.initialContent)
+      },
       setup: editor => {
         this.editor = editor;
         editor.on('keyup', () => {

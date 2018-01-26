@@ -17,11 +17,13 @@
     </ng-container>
   </div>
   <div class="ui-add-comment-footer">
-    <form [formGroup]="form" (ngSubmit)="submit()">
-      <textarea class="form-control post-comment-form-control" rows="3" placeholder="Add Comment"></textarea>
+    <form *ngIf="auth.isLoggedIn(); else commentlogin" [formGroup]="form" (ngSubmit)="submit()">
+      <textarea formControlName="comment" class="form-control post-comment-form-control" rows="3" placeholder="Add Comment"></textarea>
       <button mat-raised-button color="primary" [disabled]="form.invalid">Add Comment</button>
     </form>
-    Please
-    <a routerLink="/login">login</a> for add Comment.
+    <ng-template #commentlogin>
+      Please <a href="javascript:void(0)" (click)="login()">login</a> for add Comment.
+    </ng-template>
+    
   </div>
 </div>

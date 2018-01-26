@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
+import { tokenNotExpired, JwtHelper } from 'angular2-jwt'; 
 
 @Injectable()
 export class AuthService {
-
+  tokenKey = 'x-token';
   constructor() { }
 
-  get user(): object {
-    const user = localStorage.getItem('currentUser');
+  get user(): any {
+    const token = this.token;
     let returnObj;
 
-    if (user) {
-      returnObj = JSON.parse(user);
+    if (token) {
+      const jwt = new JwtHelper();
+      returnObj = jwt.decodeToken(token);
     } else {
       returnObj = {};
     }
@@ -18,16 +20,20 @@ export class AuthService {
     return returnObj;
   }
 
-  set user(user) {
-    localStorage.setItem('currentUser', JSON.stringify(user));
-  }
-
-  get token(): string {
-    return localStorage.getItem('x-token') || '';
+  get token() {
+    return localStorage.getItem(this.tokenKey) || '';
   }
 
   set token(token) {
-    localStorage.setItem('x-token', JSON.stringify(token));
+    localStorage.setItem(this.tokenKey, token);
+  }
+
+  logout() { 
+    localStorage.removeItem(this.tokenKey);
+  }
+
+  isLoggedIn() {
+    return tokenNotExpired(this.tokenKey);
   }
 
 }
