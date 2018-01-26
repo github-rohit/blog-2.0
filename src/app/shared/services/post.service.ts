@@ -17,8 +17,8 @@ export class PostService extends DataService {
       this.params = this.params ? this.params + '&' : '';
       this.params += `${key}=${qry[key]}`;
     }
-    return this.getAll();
-    // return this.getByQuery(this.params);
+
+    return this.getByQuery(this.params);
   }
 
 }
