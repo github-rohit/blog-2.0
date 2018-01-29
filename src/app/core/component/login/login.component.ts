@@ -34,7 +34,7 @@ export class LoginComponent {
 
   routeToAdmin() {
     if (this.returnUrl) {
-      this.router.navigate([this.returnUrl]);
+      this.router.navigateByUrl(this.returnUrl);
     } else {
       this.router.navigate(['/admin/myposts'], {
         queryParams: {
@@ -45,6 +45,11 @@ export class LoginComponent {
   }
 
   submit() {
+    
+    if (!this.form.valid) {
+      return;
+    }
+
     this.http.post('/api/login', this.form.value).subscribe((res: any) => {
       this.authService.token = res.token;
       this.routeToAdmin();

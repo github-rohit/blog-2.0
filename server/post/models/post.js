@@ -94,8 +94,8 @@ function getQuery(qry) {
         match.post_reference_id = new ObjectId(qry.post_reference_id);
     }
 
-    if (qry.author) {
-        match.created_by = new ObjectId(qry.author);
+    if (qry.created_by) {
+        match.created_by = new ObjectId(qry.created_by);
     }
     
     if (qry.category) {

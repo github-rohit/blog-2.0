@@ -9,8 +9,9 @@ module.exports = (req, res) => {
         name: data.name,
         passwd: data.passwd
     });
-    sendEmal(host, 'email-verify', 'verification', 'Please verify your email address', user);
-    user.save(user).then(()=> {
+    
+    user.save(user).then(() => {
+        sendEmal(host, 'email-verify', 'verification', 'Please verify your email address', user);
         res.send(user);
     }).catch(e => {
         if (e.code === 11000) {

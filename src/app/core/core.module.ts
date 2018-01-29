@@ -13,6 +13,7 @@ import { DataService } from '../shared/services/data.service';
 import { AuthorComponent } from './component/author/author.component';
 import { PageLoaderComponent } from './component/page-loader/page-loader.component';
 import { NotAuthGuard } from './services/not-auth-guard.service';
+import { EmailVerifierComponent } from './component/email-verifier/email-verifier.component';
 
 @NgModule({
   imports: [
@@ -23,6 +24,14 @@ import { NotAuthGuard } from './services/not-auth-guard.service';
     RouterModule.forChild([{
       path: 'author/:id/:name',
       component: AuthorComponent
+    }, {
+      path: 'verification/:id',
+      component: EmailVerifierComponent,
+      canActivate: [NotAuthGuard]
+    }, {
+      path: 'resetpassword/:id',
+      component: ResetPasswordComponent,
+      canActivate: [NotAuthGuard]
     }])
   ],
   declarations: [
@@ -32,7 +41,8 @@ import { NotAuthGuard } from './services/not-auth-guard.service';
     ForgotPasswordComponent,
     ResetPasswordComponent,
     AuthorComponent,
-    PageLoaderComponent
+    PageLoaderComponent,
+    EmailVerifierComponent
   ],
   providers: [
     NotAuthGuard

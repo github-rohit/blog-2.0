@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../shared/services/auth.service';
@@ -12,13 +13,18 @@ export class NavbarComponent implements OnInit {
   user;
   constructor(
     public auth: AuthService,
+    private http: HttpClient,
     private router: Router) { }
 
   logout() {
-    this.isLoggedIn = false;
-    this.user = false;
-    this.auth.logout();
-    this.router.navigateByUrl('/');
+    this.http.post('/api/logout', {}).subscribe(() => {
+      this.isLoggedIn = false;
+      this.user = false;
+      this.auth.logout();
+      this.router.navigateByUrl('/login');
+    }, error => {
+
+    });
   }
 
   afterLogin() {

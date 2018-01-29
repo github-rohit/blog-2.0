@@ -25,11 +25,11 @@ export class SignupComponent {
         Validators.required,
         Validators.minLength(3)
       ]],
-      password: ['', [
+      passwd: ['', [
         Validators.required,
         Validators.minLength(6)
       ]],
-      password_again: ['', [
+      passwd_again: ['', [
         Validators.required,
         Validators.minLength(6)
       ]],
@@ -63,11 +63,11 @@ export class SignupComponent {
   }
 
   get password() {
-    return this.form.get('password');
+    return this.form.get('passwd');
   }
 
   get passwordAgain() {
-    return this.form.get('password_again');
+    return this.form.get('passwd_again');
   }
 
 }

@@ -105,17 +105,18 @@ dbSchema.pre('save', function (next) {
     const user = this;
 
     if (user.isModified('passwd')) {
-        bcrypt.genSalt(10, (err, salt) => {
-            bcrypt.hash(user.passwd, salt, (err, hash) => {
-                user.passwd = hash;
-                next();
-            });
-        });
+        getEncryptPassword(user.passwd).then((passwd) => {
+            user.passwd = passwd;
+            next();
+        }).catch(error => {
+            next();
+        })
     } else {
         next();
     }
 
 });
+
 dbSchema.methods.removeToken = function (token) {
     var user = this;
 
@@ -182,7 +183,31 @@ dbSchema.statics.findByCredentials = function (email, passwd) {
         });
     });
 };
+dbSchema.statics.updatePassword = function (id, passwd) {
+    return getEncryptPassword(passwd).then((pwd) => {
+        return User.findOneAndUpdate({
+            _id: id
+        }, {
+            passwd: pwd
+        });   
+    });
+}
 
 const User = mongoose.model('User', dbSchema);
 
 module.exports = { User }
+
+
+function getEncryptPassword (passwd) {
+    return new Promise((resolve, reject) => {
+        bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(passwd, salt, (err, hash) => {
+                if (err) {
+                    reject();
+                } else {
+                    resolve(hash);
+                }
+            });
+        });
+    });
+}

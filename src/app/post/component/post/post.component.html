@@ -1,11 +1,15 @@
 <ng-container *ngIf="norecord">
-  <h1 class="error-heading">:( OOPS</h1>
-  <p class="error-message">No record found.</p>
+  <div class="row mr-t-lg ">
+    <div class="col-md-10 ml-md-auto mr-md-auto">
+      <h1>:( OOPS</h1>
+      <h3 class="family-roboto-light">No record found.</h3>
+    </div>
+  </div>
 </ng-container>
 <ng-container *ngFor="let post of posts">
   <post-card [post]="post"></post-card>
 </ng-container>
 <ng-container *ngIf="posts.length">
-    <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="pageChange($event)">
-      </mat-paginator>
+  <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="pageChange($event)">
+  </mat-paginator>
 </ng-container>

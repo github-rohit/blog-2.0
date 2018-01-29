@@ -14,7 +14,7 @@ import { PostSingleComponent } from './component/post-single/post-single.compone
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild([{
-      path: ':id/:title',
+      path: 'post/:id/:title',
       component: PostSingleComponent
     }])
   ],

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { ComparePasswordValidation } from './../../validation/compare-password.validation';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -9,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForgotPasswordComponent {
   success = false;
+  error = false;
   form: FormGroup;
+
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private http: HttpClient
   ) {
     this.form = fb.group({
       email: ['', [
@@ -22,8 +26,16 @@ export class ForgotPasswordComponent {
   }
 
   submit() {
-    this.success = true;
-    console.log('SUBMIT');
+    
+    if (!this.form.valid) {
+      return;
+    }
+
+    this.http.post('/api/forgotpassword', this.form.value).subscribe(() => {
+      this.success = true;
+    }, error => {
+      this.error = true;
+    });
   }
 
   get email() {

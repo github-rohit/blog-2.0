@@ -21,6 +21,9 @@ html.body-white body,
 body.body-white {
     background: #FFF;
 }
+.body-verification header.fixed-top{
+    display: none;
+}
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Merriweather', sans-serif;
     line-height: 1.5;
@@ -450,13 +453,14 @@ a {
 
 /*
 */
-.error-heading {
+.error-heading,
+.error-message  {
     font-size: 5em;
-    color: #000;
+    font-weight: 300;
+    color: #999;
 }
 .error-message {
     font-size: 3em;
-    font-weight: 300;
 }
 .cdk-overlay-container {
     z-index: 1040;
