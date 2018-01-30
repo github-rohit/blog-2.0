@@ -42,7 +42,7 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
   }
 
   submit() {
-    
+
     if (!this.form.valid) {
       return;
     }
@@ -50,7 +50,7 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
     this.submitSubscription = this.http.post('/api/resetpassword', this.form.value).subscribe(() => {
       this.router.navigate(['/login']);
     }, error => {
-
+      
     });
   }
 

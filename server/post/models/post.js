@@ -106,6 +106,34 @@ function getQuery(qry) {
         match.tags = { $elemMatch: {text: qry.tags} };
     }    
 
+    if (qry.query) {
+        match = {
+            $and: [match, {
+                $or: [{
+                    title: {
+                        $regex: qry.query,
+                        $options: "i"
+                    }
+                }, {
+                    description: {
+                        $regex: qry.query,
+                        $options: "i"
+                    }
+                }, {
+                    category: {
+                        $regex: qry.query,
+                        $options: "i"
+                    }
+                }, {
+                    tags: {
+                        $regex: qry.query,
+                        $options: "i"
+                    }
+                }]						
+            }]
+        };
+    }
+
     query = [{
         $match: match
     }, {

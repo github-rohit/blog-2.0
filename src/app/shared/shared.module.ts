@@ -20,6 +20,7 @@ import { RequestInterceptor } from './services/request-interceptor.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
+import { PostFilterComponent } from './component/post-filter/post-filter.component';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { AuthGuard } from './services/auth-guard.service';
     TruncatePipe,
     CategoryComponent,
     ReplaceWithDashPipe,
-    ToastComponent
+    ToastComponent,
+    PostFilterComponent
   ],
   exports: [
     MatComponentModule,
@@ -47,7 +49,8 @@ import { AuthGuard } from './services/auth-guard.service';
     TruncatePipe,
     ReplaceWithDashPipe,
     CategoryComponent,
-    ToastComponent
+    ToastComponent,
+    PostFilterComponent
   ],
   providers: [
     PostService,
