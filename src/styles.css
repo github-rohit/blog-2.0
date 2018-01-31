@@ -160,6 +160,9 @@ a {
     max-width: 220px;
     padding-left: 0;
 }
+.post-card .col-image .img-fluid {
+    max-height: 220px;
+}
 .post-card .byline {
     margin-top: 10px;
     font-weight: 500;

@@ -30,7 +30,7 @@ export class PostComponent implements OnDestroy {
     private postService: PostService) {
     this.posts = [];
     this.routeSubscription = this.activatedRoute.queryParamMap.subscribe((qry: any) => {
-      this.selectedCategory = qry.get('category');
+      this.selectedCategory = qry.get('category') || '';
       this.searchQuery = qry.get('query') || '';
       this.getPosts(qry.params);
     });

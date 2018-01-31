@@ -21,6 +21,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { PostFilterComponent } from './component/post-filter/post-filter.component';
+import { PostPaginatorComponent } from './component/post-paginator/post-paginator.component';
 
 @NgModule({
   imports: [
@@ -39,7 +40,8 @@ import { PostFilterComponent } from './component/post-filter/post-filter.compone
     CategoryComponent,
     ReplaceWithDashPipe,
     ToastComponent,
-    PostFilterComponent
+    PostFilterComponent,
+    PostPaginatorComponent
   ],
   exports: [
     MatComponentModule,
@@ -50,7 +52,8 @@ import { PostFilterComponent } from './component/post-filter/post-filter.compone
     ReplaceWithDashPipe,
     CategoryComponent,
     ToastComponent,
-    PostFilterComponent
+    PostFilterComponent,
+    PostPaginatorComponent
   ],
   providers: [
     PostService,

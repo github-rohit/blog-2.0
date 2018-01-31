@@ -31,13 +31,18 @@ export class PostFilterComponent implements OnInit, OnDestroy {
   }
 
   categoryChange(value) {
+    let queryParams = {};
+    if (value) {
+      queryParams = {
+        queryParams: {
+          category: value
+        }
+      };
+    }
+
     this.query = '';
     this.setQuery();
-    this.router.navigate(['/'], {
-      queryParams: {
-        category: value
-      }
-    });
+    this.router.navigate(['/'], queryParams);
   }
 
   filter() {

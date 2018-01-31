@@ -1,16 +1,19 @@
+import { Subscription } from 'rxjs/Subscription';
 import { AuthService } from './../../../shared/services/auth.service';
+import { PostService } from './../../../shared/services/post.service';
+import { Post } from '../../../shared/models/post';
 import { PageEvent } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PostService } from './../../../shared/services/post.service';
-import { Component, OnInit } from '@angular/core';
-import { Post } from '../../../shared/models/post';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'my-posts',
   templateUrl: './my-posts.component.html',
   styleUrls: ['./my-posts.component.css']
 })
-export class MyPostsComponent {
+export class MyPostsComponent implements OnDestroy {
+  paramSubscription: Subscription;
+  postSubscription: Subscription;
   isPublished = true;
   isDraft = false;
   posts: Post[];
@@ -18,6 +21,7 @@ export class MyPostsComponent {
   user;
 
   // MatPaginator Inputs
+  norecord = false;
   length = 0;
   pageSize = 10;
   pageSizeOptions = [10, 25, 100];
@@ -29,7 +33,7 @@ export class MyPostsComponent {
     private postService: PostService) {
     this.posts = [];
     this.user = this.auth.user;
-    this.activatedRoute.queryParamMap.subscribe((qry: any) => {
+    this.paramSubscription = this.activatedRoute.queryParamMap.subscribe((qry: any) => {
       this.status = qry.get('status');
       this.getPosts(qry.params);
       this.activelink();
@@ -40,19 +44,11 @@ export class MyPostsComponent {
     const query = Object.create(qry);
     query.created_by = this.user._id;
 
-    this.postService.getPostByQuery(query).subscribe(res => {
+    this.postSubscription = this.postService.getPostByQuery(query).subscribe(res => {
       this.posts = res.posts;
       this.length = res.total;
-    });
-  }
-
-  pageChange(event: PageEvent) {
-    this.router.navigate(['/admin/myposts'], {
-      queryParams: {
-        status: this.status,
-        pageIndex: event.pageIndex + 1,
-        pageSize: event.pageSize
-      }
+      this.norecord = !res.total;
+      window.scrollTo(0, 0);
     });
   }
 
@@ -64,5 +60,10 @@ export class MyPostsComponent {
       this.isDraft = false;
       this.isPublished = true;
     }
+  }
+
+  ngOnDestroy() {
+    this.paramSubscription.unsubscribe();
+    this.postSubscription.unsubscribe();
   }
 }

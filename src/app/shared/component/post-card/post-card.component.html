@@ -12,11 +12,11 @@
         <div class="col">
             <a style="margin-left: -15px;" [routerLink]="['/post', post._id, post.title | replaceWithDash]" mat-button color="primary">READ MORE</a>
         </div>
-        <div class="col text-right align-self-center">
+        <div class="col text-right align-self-center"><span *ngIf="!isOwner">
             <i>BY
                 <a [routerLink]="['/author/', post.created_by, post.author[0].name | replaceWithDash]">{{post.author[0].name}}</a>
               </i>
-              <i class="fa fa-circle"></i>
+              <i class="fa fa-circle"></i></span>
               {{post.created_on | date: 'MMM d, y'}}         
         </div>
       </div>
