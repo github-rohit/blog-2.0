@@ -1,7 +1,7 @@
 import { CategoryService } from './../../services/category.service';
 import { Category } from './../../models/category';
 import { Subscription } from 'rxjs/Subscription';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 
@@ -13,14 +13,17 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 export class PostFilterComponent implements OnInit, OnDestroy {
   @Input('selectedCategory') selectedCategory: string;
   @Input('search-query') query: string;
+
+  qrerySubscription: Subscription;
+  subscription: Subscription;
   
   categorys: Category[];
-  subscription: Subscription;
   form;
   
   constructor(
     private catService: CategoryService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) { 
     this.form = fb.group({
@@ -46,18 +49,11 @@ export class PostFilterComponent implements OnInit, OnDestroy {
   }
 
   filter() {
-    this.selectedCategory = '';
-    const urlTree = this.router.createUrlTree([], {
-      queryParams: {
-        query: this.form.value.query,
-        pageIndex: 1,
-        category: ''
-      },
-      queryParamsHandling: 'merge',
-      preserveFragment: true 
-    });
-  
-    this.router.navigateByUrl(urlTree); 
+    this.router.navigate(['/'], {
+        queryParams: {
+          query: this.form.value.query
+        }
+      });
   }
 
   setQuery() {
@@ -71,9 +67,16 @@ export class PostFilterComponent implements OnInit, OnDestroy {
     }, error => {
 
     });
+
+    this.qrerySubscription = this.activatedRoute.queryParams.subscribe(qry => {
+      this.selectedCategory = qry.category || '';
+      this.query = qry.query || '';
+      this.setQuery();
+    });
   }
 
   ngOnDestroy() {
+    this.qrerySubscription.unsubscribe();
     this.subscription.unsubscribe();
   }
 

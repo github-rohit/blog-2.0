@@ -101,9 +101,9 @@ function getQuery(qry) {
     if (qry.category) {
         match.category = qry.category;
     } 
-    
+
     if (qry.tags){
-        match.tags = { $elemMatch: {text: qry.tags} };
+        match.tags = qry.tags;
     }    
 
     if (qry.query) {

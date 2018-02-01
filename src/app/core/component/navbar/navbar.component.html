@@ -1,4 +1,4 @@
-<header class="navbar navbar-expand-md fixed-top mat-elevation-z6">
+<header class="navbar navbar-expand fixed-top mat-elevation-z6">
   <div class="container">
     <div class="navbar-header">
       <button class="navbar-toggler" type="button">
@@ -13,8 +13,8 @@
       </a>
     </div>
     <nav class="navbar flex-md-row">
-      <ul class="navbar-nav mr-auto">
-        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+      <ul class="navbar-nav mr-auto navbar-nav-left">
+        <li class="home" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
           <a [routerLink]="['/']">HOME</a>
         </li>
         <li *ngIf="auth.isLoggedIn()" [routerLinkActive]="['active']">

@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class PostCardComponent {
   @Input('post') post: Post;
   @Input('isOwner') isOwner;
+  @Input('displayName') displayName;
 
   constructor() { }
 

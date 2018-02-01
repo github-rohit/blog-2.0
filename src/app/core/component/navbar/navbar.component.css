@@ -2,17 +2,21 @@
 	padding: 0;
 	width: 100%;
 }
-.navbar-expand-md{
+.navbar-expand {
 	background: #3f51b5;		
+}
+.navbar-expand>.container {
+	padding-right: 15px;
 }
 .navbar-brand {
 	position: relative;
 	padding: 10px 15px;
+	margin-right: 0;
 }
 .navbar-brand span {
 	font-size: 10px;
 	color: #FFF;
-	margin-left: -2px;
+	margin-left: -6px;
 	top: 13px;
 	position: relative;
 	font-weight: bold;
@@ -24,7 +28,7 @@
 	font-size: 14px;
 	font-weight: 500;
 	color: rgba(255, 255, 255, .87);
-	padding: 20px;
+	padding: 21px 20px;
 	text-decoration: none;
 }
 .navbar-nav li a:hover {
@@ -90,4 +94,9 @@
 .user-dropdown li a.color {
 	cursor: pointer;
 	font-size: 14px;
+}
+@media only screen and (max-width: 400px) {
+    .navbar-nav-left li.home{
+        display: none !important;
+    }
 }

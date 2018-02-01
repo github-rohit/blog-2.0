@@ -92,7 +92,7 @@ export class PostFormComponent implements OnInit, OnDestroy {
           title: this.post.title,
           description: this.post.description,
           image: this.post.image,
-          category: this.post.category,
+          category: this.post.category.toString(),
           tags: this.post.tags
         });
       }, error => {

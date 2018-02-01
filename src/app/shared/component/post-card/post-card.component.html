@@ -4,21 +4,45 @@
       <img [src]="post.image" class="img-fluid">
     </div>
     <div class="col">
-      <h2>
-        <a [routerLink]="['/post', post._id, post.title | replaceWithDash]">{{post.title}}</a>
-      </h2>
-      <div>{{post.description | truncate}}</div>
-      <div class="byline small row">
+      <div class="row">
         <div class="col">
-            <a style="margin-left: -15px;" [routerLink]="['/post', post._id, post.title | replaceWithDash]" mat-button color="primary">READ MORE</a>
+          <h2>
+            <a [routerLink]="['/post', post._id, post.title | replaceWithDash]">{{post.title}}</a>
+          </h2>
         </div>
-        <div class="col text-right align-self-center"><span *ngIf="!isOwner">
+        <div class="edit-post">
+          <ng-container *ngIf="isOwner">
+            <a mat-icon-button [routerLink]="['/admin/post', post._id]">
+              <mat-icon>edit</mat-icon>
+            </a>
+          </ng-container>
+        </div>
+      </div>
+      <div class="byline small row">
+        <div class="col align-self-center">
+          <span *ngIf="displayName">
             <i>BY
-                <a [routerLink]="['/author/', post.created_by, post.author[0].name | replaceWithDash]">{{post.author[0].name}}</a>
-              </i>
-              <i class="fa fa-circle"></i></span>
-              {{post.created_on | date: 'MMM d, y'}}         
+              <a [routerLink]="['/author/', post.created_by, post.author[0].name | replaceWithDash]">{{post.author[0].name}}</a>
+            </i>
+            <i class="fa fa-circle"></i>
+          </span>
+          {{post.created_on | date: 'MMM d, y'}}
         </div>
+      </div>
+      <div class="excerpt">{{post.description | truncate}}
+        <a [routerLink]="['/post', post._id, post.title | replaceWithDash]" class="small read-more"><b>READ MORE</b></a>
+      </div>
+      <div>
+        <span *ngIf="post.category && post.category.toString() !== 'Uncategorized' && post.category.toString() !== ''">
+          <a [routerLink]="['/']" [queryParams]="{category: c}" *ngFor="let c of post.category">
+            <span class="badge badge-pill badge-secondary">{{c}}</span>
+          </a>
+        </span>
+        <span *ngIf="post.tags && post.tags.length">
+          <a *ngFor="let tag of post.tags" [routerLink]="['/']" [queryParams]="{tags: tag}">
+            <span class="badge badge-pill badge-secondary">{{tag}}</span>
+          </a>
+        </span>
       </div>
     </div>
   </div>

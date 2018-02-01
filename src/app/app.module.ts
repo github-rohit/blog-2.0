@@ -1,3 +1,4 @@
+import { NotFoundComponent } from './shared/component/not-found/not-found.component';
 import { NotAuthGuard } from './core/services/not-auth-guard.service';
 import { AuthGuard } from './shared/services/auth-guard.service';
 import { PostComponent } from './post/component/post/post.component';
@@ -48,7 +49,8 @@ import { SharedModule } from './shared/shared.module';
         path: 'resetpassword',
         component: ResetPasswordComponent,
         canActivate: [NotAuthGuard]
-      }
+      },
+      {path: '**', component: NotFoundComponent}
     ])
   ],
   providers: [],

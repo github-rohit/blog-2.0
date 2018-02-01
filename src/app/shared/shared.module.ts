@@ -22,6 +22,7 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { PostFilterComponent } from './component/post-filter/post-filter.component';
 import { PostPaginatorComponent } from './component/post-paginator/post-paginator.component';
+import { NotFoundComponent } from './component/not-found/not-found.component';
 
 @NgModule({
   imports: [
@@ -41,7 +42,8 @@ import { PostPaginatorComponent } from './component/post-paginator/post-paginato
     ReplaceWithDashPipe,
     ToastComponent,
     PostFilterComponent,
-    PostPaginatorComponent
+    PostPaginatorComponent,
+    NotFoundComponent
   ],
   exports: [
     MatComponentModule,
