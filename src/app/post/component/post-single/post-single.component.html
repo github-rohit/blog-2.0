@@ -23,13 +23,13 @@
                 </a>
               </span>
               <span *ngIf="post.tags && post.tags.length">
-                <a *ngFor="let tag of post.tags" [routerLink]="['/']" [queryParams]="{tags: tag}">
-                  <span class="badge badge-pill badge-secondary">{{tag}}</span>
+                <a *ngFor="let tag of post.tags" [routerLink]="['/']" [queryParams]="{tags: tag.text}">
+                  <span class="badge badge-pill badge-secondary">{{tag.text}}</span>
                 </a>
               </span>
             </div>
         </div>
-        <post-comment [post-id]="postId"></post-comment>
+        <post-comment *ngIf="!preview" [post-id]="postId"></post-comment>
       </div>
     </div>
     <div class="col-md-3">

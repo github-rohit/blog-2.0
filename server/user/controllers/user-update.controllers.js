@@ -3,7 +3,7 @@ const _ = require('lodash');
 
 module.exports = (req, res) => {
     User.update({
-        _id: req.params.id
+        _id: req.user._id
     }, req.body).then(user => {
         res.send(user);
     }).catch(error => {

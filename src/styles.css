@@ -220,6 +220,9 @@ a {
     margin: 0 5px;
     margin-top: -2px;
 }
+.ui-post-page .byline a:not(:hover) {
+    color: #404040;
+}
 
 .ui-add-comment{
     background: #FFF;
@@ -257,6 +260,9 @@ a {
     vertical-align: middle;
     margin: 0 5px;
     margin-top: -2px;
+}
+.ui-add-comment .byline a:not(:hover) {
+    color: #404040;
 }
 .ui-add-comment .ui-add-comment-footer {
     background: #F7F9FA;
@@ -321,8 +327,8 @@ a {
 .mce-top-part::before {
 	display: none;
 }
-.mce-primary button, .mce-primary button i{
-    color: #3f3f3f;
+.mce-primary button, .mce-primary button i {
+    color: #3f3f3f !important;
 }
 
 /* 

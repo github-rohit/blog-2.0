@@ -43,8 +43,13 @@
         </div>
       </div>
       <div class="fixed-wrapper-btns create-btns clearfix">
-        <button mat-button color="primary" [disabled]="form.invalid" (click)="save('DRAFT')">Save as Draft</button>
-        <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="save('PUBLISHED')">Publish</button>
+        <ng-container *ngIf="post && post.status === 'PUBLISHED'; else createBtns">
+            <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="submit()">Update Post</button>
+        </ng-container>
+        <ng-template #createBtns>
+            <button mat-button color="primary" [disabled]="form.invalid" (click)="submit('DRAFT')">Save as Draft</button>
+            <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="submit('PUBLISHED')">Publish</button>
+        </ng-template>
       </div>
     </form>
   </div>

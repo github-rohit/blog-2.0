@@ -1,3 +1,4 @@
+import { AppErrorHandler } from './shared/errors/app-error-handler';
 import { NotFoundComponent } from './shared/component/not-found/not-found.component';
 import { NotAuthGuard } from './core/services/not-auth-guard.service';
 import { AuthGuard } from './shared/services/auth-guard.service';
@@ -13,7 +14,7 @@ import { AdminModule } from './admin/admin.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 
@@ -53,7 +54,10 @@ import { SharedModule } from './shared/shared.module';
       {path: '**', component: NotFoundComponent}
     ])
   ],
-  providers: [],
+  providers: [{
+    provide: ErrorHandler,
+    useClass: AppErrorHandler
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

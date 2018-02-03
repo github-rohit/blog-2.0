@@ -1,3 +1,4 @@
+import { UnauthorizedError } from './../errors/unauthorized-error';
 import { HttpClient } from '@angular/common/http';
 import { AppError } from './../errors/app-error';
 import { NotFoundError } from './../errors/not-found-error';
@@ -33,6 +34,12 @@ export class DataService {
       .catch(this.handleError);
   }
 
+  getByIdWithAuth(id: string, resource) {
+    return this.http.post(this.url + '/' + id, resource)
+      .map(response => response)
+      .catch(this.handleError);
+  }
+
   create(resource) {
     return this.http.post(this.url, resource)
       .map(response => response)
@@ -54,6 +61,10 @@ export class DataService {
   private handleError(error: Response) {
     if (error.status === 400) {
       return Observable.throw(new BadInput(error));
+    }
+
+    if (error.status === 401) {
+      return Observable.throw(new UnauthorizedError(error));
     }
 
     if (error.status === 404) {

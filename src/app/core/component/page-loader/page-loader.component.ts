@@ -15,9 +15,9 @@ export class PageLoaderComponent implements OnInit {
   ngOnInit() {
     DataService.pendingReq.subscribe((count) => {
       if (count === 0) {
-        // this.show = false;
+         this.show = false;
       } else {
-        // this.show = true;
+         this.show = true;
       }
     });
   }

@@ -16,6 +16,7 @@ import { ReplaceWithDashPipe } from '../../../shared/pipes/replace-with-dash.pip
 export class PostFormComponent implements OnInit, OnDestroy {
   post: Post;
   postId: string;
+  status: string;
   toast = {};
   user;
   category;
@@ -38,9 +39,8 @@ export class PostFormComponent implements OnInit, OnDestroy {
     this.form.controls['description'].setValue($event);
   }
 
-  createForm() {
+  private createForm() {
     this.form = this.fb.group({
-      created_by: [this.user._id],
       title: ['', [
         Validators.required]
       ],
@@ -52,17 +52,74 @@ export class PostFormComponent implements OnInit, OnDestroy {
     });
   }
 
-  save($event) {
-    this.form.value['status'] = $event;
-    this.postService.create(this.form.value).subscribe((post: Post) => {
-      const title = new ReplaceWithDashPipe().transform(this.form.value.title);
-      this.router.navigate(['/' + post._id + '/' + title]);
-    }, (error) => {
-      this.toast  = {
-        classes: 'toast-error',
-        message: ':( OOPS something went wrong while saving post.'
-      };
+  private formatTags(tags, save?) {
+    let arr = [];
+
+    if (save) {
+      arr = Array.from(tags, val => {
+        return {'text': val};
+      });
+    } else {
+      arr = Array.from(tags, (o: any) => o.text);
+    }
+
+    return arr;
+  }
+
+  private formatFormData(status) {
+    this.form.value['status'] = status;
+    const data = Object.assign({}, this.form.value);
+
+    if (this.form.value.tags) {
+      data.tags = this.formatTags(this.form.value.tags, true);
+    }  
+    
+    return data;
+  }
+
+  private preview(data: Post) {
+    const title = new ReplaceWithDashPipe().transform(this.form.value.title);
+    this.router.navigate(['/post/' + data._id + '/' + title], {
+      queryParams: {
+        status: data.status.toLowerCase(),
+        preview: true
+      }
     });
+  }
+
+  private errorToast() {
+    this.toast  = {
+      classes: 'toast-error',
+      message: ':( OOPS something went wrong while saving post.'
+    };
+  }
+
+  private save(data) {
+    this.postService.create(data).subscribe((post: Post) => {
+      this.preview(post);
+    }, (error) => {
+      this.errorToast();
+    });
+  }
+
+  private update(data) {
+    this.postService.update(this.postId, data).subscribe(() => {
+      this.preview(this.post);
+    }, (error) => {
+      this.errorToast();
+    });
+  }
+
+  submit($event?) {
+    const status = $event || this.post.status;
+    const data = this.formatFormData(status);
+
+    if (this.postId) {
+      this.update(data);
+    } else {
+      this.save(data);
+    }
+
   }
 
   get title() {
@@ -79,21 +136,24 @@ export class PostFormComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.postId = this.route.snapshot.paramMap.get('id');
+
     this.categoryService.getAll().subscribe((category) => {
       this.category = category;
     }, (error) => {
 
     });
     if (this.postId) {
-      this.postService.getById(this.postId).subscribe(post => {
+      this.status = this.route.snapshot.queryParamMap.get('status');
+      this.postService.getByIdWithAuth(this.postId, {
+        status: this.status
+      }).subscribe(post => {
         this.post = post[0];
         this.form.setValue({
-          created_by: this.user._id,
           title: this.post.title,
           description: this.post.description,
           image: this.post.image,
           category: this.post.category.toString(),
-          tags: this.post.tags
+          tags: this.formatTags(this.post.tags)
         });
       }, error => {
 

@@ -103,9 +103,9 @@ function getQuery(qry) {
     } 
 
     if (qry.tags){
-        match.tags = qry.tags;
+        match.tags = { $elemMatch: {text: qry.tags} };
     }    
-
+    
     if (qry.query) {
         match = {
             $and: [match, {

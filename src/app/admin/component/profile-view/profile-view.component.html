@@ -13,7 +13,7 @@
                 <i class="fa fa-envelope-o"></i> {{ user.email }}</p>
               <p title="Website" *ngIf="user.website; else website">
                 <i class="fa fa-wpforms"></i>
-                <a routeLink="[user.website]" target="_blank">{{user.website}}</a>
+                <a href="{{user.website}}" target="_blank">{{user.website}}</a>
               </p>
               <ng-template #website>
                 <p>
