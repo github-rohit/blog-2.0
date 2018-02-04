@@ -48,7 +48,7 @@ dbSchema.methods.toJSON = function () {
     const user = this;
     const userObj = user.toObject();
 
-    return _.pick(userObj, ['_id', 'description', 'image', 'category', 'tags', 'created_by', 'created_on', 'post_reference_id']);
+    return _.pick(userObj, ['_id', 'description', 'image', 'category', 'tags', 'created_by', 'created_on', 'status', 'post_reference_id']);
 }
 
 const Post = mongoose.model('Post', dbSchema);
