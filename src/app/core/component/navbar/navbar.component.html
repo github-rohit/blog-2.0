@@ -1,4 +1,4 @@
-<header class="navbar navbar-expand fixed-top mat-elevation-z6">
+<header class="navbar navbar-expand fixed-top" [ngClass]="{'nav-shadow': isScroll}">
   <div class="container">
     <div class="navbar-header">
       <button class="navbar-toggler" type="button">
@@ -8,11 +8,17 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">
-        <img height="40" src="/assets/images/logo_white.svg" alt="nirmalrohit.com">
+        <img height="40" src="/assets/images/logo_blue.svg" alt="nirmalrohit.com">
         <span>BLOG</span>
       </a>
     </div>
-    <nav class="navbar flex-md-row">
+    <button type="button" class="menu-btn" [ngClass]="{'open': showMenu}" (click)="toggleMenu($event)">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="navbar navbar-menu flex-md-row" [ngClass]="{'navbar-dropdown': showMenu}" (click)="closeMenu($event)">
+
       <ul class="navbar-nav mr-auto navbar-nav-left">
         <li class="home" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
           <a [routerLink]="['/']">HOME</a>
@@ -29,13 +35,23 @@
           <a routerLink="signup">SIGN UP</a>
         </li>
       </ul>
-      <ul *ngIf="auth.isLoggedIn()" class="nav navbar-nav navbar-right">
-        <li>
-          <a href="javascript:void(0)" class="user-avatar rounded-circle" [matMenuTriggerFor]="userMenu">
-            <img *ngIf="auth.user.image" [src]="auth.user.image">
-            <span>RG</span>
-          </a>
-        </li>
+      <ng-container *ngIf="auth.isLoggedIn()">
+        <ul class="nav navbar-nav navbar-right mobile-show">
+          <li>
+            <a routerLink="admin/profile">MY PROFILE</a>
+          </li>
+          <li>
+            <a class="color" (click)="logout()">LOGOUT</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right mobile-hide">
+          <li>
+            <a href="javascript:void(0)" class="user-avatar rounded-circle" [matMenuTriggerFor]="userMenu">
+              <img *ngIf="auth.user.image" [src]="auth.user.image">
+              <span>RG</span>
+            </a>
+          </li>
+        </ul>
         <mat-menu #userMenu="matMenu">
           <ul class="user-dropdown">
             <li>
@@ -55,7 +71,8 @@
             </li>
           </ul>
         </mat-menu>
-      </ul>
+
+      </ng-container>
     </nav>
   </div>
 </header>

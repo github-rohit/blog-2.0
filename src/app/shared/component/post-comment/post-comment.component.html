@@ -18,7 +18,7 @@
   </div>
   <div class="ui-add-comment-footer">
     <form *ngIf="auth.isLoggedIn(); else commentlogin" [formGroup]="form" (ngSubmit)="submit()">
-      <textarea formControlName="comment" class="form-control post-comment-form-control" rows="3" placeholder="Add Comment"></textarea>
+      <textarea formControlName="comment" class="form-control post-comment-form-control" rows="2" placeholder="Add Comment"></textarea>
       <button mat-raised-button color="primary" [disabled]="form.invalid">Add Comment</button>
     </form>
     <ng-template #commentlogin>

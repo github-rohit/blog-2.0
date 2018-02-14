@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { AuthService } from '../../../shared/services/auth.service';
 
 @Component({
@@ -9,6 +9,8 @@ import { AuthService } from '../../../shared/services/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  isScroll = false;
+  showMenu = false;
   isLoggedIn;
   user;
   constructor(
@@ -25,6 +27,22 @@ export class NavbarComponent implements OnInit {
     }, error => {
 
     });
+  }
+
+  toggleMenu() {
+    this.showMenu = !this.showMenu;
+  }
+
+  closeMenu() {
+    this.showMenu = false;
+  }
+
+  @HostListener('window:scroll') onWindowScroll() {
+    if (window.pageYOffset > 0) {
+      this.isScroll = true;
+    } else {
+      this.isScroll = false;
+    }
   }
 
   afterLogin() {

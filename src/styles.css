@@ -2,19 +2,27 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 html, body {
-    background: #F1F3F6;
+    /* background: #F1F3F6; */
     color: #404040;
     height: 100%;
+    outline: none;
 }
-
 body {
     font-family: 'Roboto', sans-serif;
     padding-top: 90px;
     padding-bottom: 30px;
     height: auto;
     min-height: 100%;
+    font-weight: 300;
     font-size: 16px;
+    letter-spacing: 0.015rem;
     line-height: 1.7;
+}
+* {
+    outline: inherit;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
 html.body-white,
 html.body-white body,
@@ -23,6 +31,9 @@ body.body-white {
 }
 b, strong {
     font-weight: 500;
+}
+hr {
+    border-top-color: #EFEFEF;
 }
 button {
     outline: none !important;
@@ -50,6 +61,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 a {
     color: #3f51b5;
+}
+.mobile-show {
+    display: none !important;
 }
 .text-brand {
     color: #3f51b5;
@@ -81,8 +95,14 @@ a {
 
 .login-card {
     margin-top: 16px;
-    border: 0;
-    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    border: 1px solid #EFEFEF;;
+    border-radius: 0;
+    box-shadow: 0px 4px 20px 0px rgba(0,0,0,0.04);
+    /* box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12); */
+}
+.login-card .card-header {
+    background: #FFF;
+    border-bottom: 1px solid #EFEFEF;
 }
 .login-card .card-header p{
     margin-bottom: 0;
@@ -99,6 +119,8 @@ a {
 }
 
 .profile-container {
+    padding: 0;
+    padding-bottom: 64px;
     padding-left: 250px;
 }
 .profile-container .profile-container-left {
@@ -144,8 +166,15 @@ a {
     background: #FFF;
     padding: 15px;
     margin-bottom: 30px;
-    border-radius: 2px;
-    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    border: 1px solid #efefef;
+    -webkit-transition: box-shadow ease .3s;
+    -moz-transition: box-shadow ease .3s;
+    -o-transition: box-shadow ease .3s;
+    -ms-transition: box-shadow ease .3s;
+    transition: box-shadow ease .3s;
+}
+.post-card:hover {
+    box-shadow: 0 0 20px 0 #efefef;
 }
 .post-card a.read-more {
     white-space: nowrap;
@@ -196,7 +225,8 @@ a {
 */
 .ui-post-page {
     background: #FFF;
-    padding: 15px 30px;
+    /* padding: 15px 30px; */
+    padding: 0 30px 30px 0;
 }
 .ui-post-page h2 {
     color: #000;
@@ -225,6 +255,8 @@ a {
 }
 
 .ui-add-comment{
+    border-top: double #EFEFEF;
+    padding-top: 30px;
     background: #FFF;
 }
 .ui-add-comment .ui-add-comment-header h4 {
@@ -237,7 +269,7 @@ a {
     margin-left: -5px;
 }
 .ui-add-comment .ui-add-comment-body {
-    padding: 15px;
+    padding: 15px 0;
 }
 .ui-add-comment .comment-row p {
     font-size: 14px;
@@ -265,13 +297,14 @@ a {
     color: #404040;
 }
 .ui-add-comment .ui-add-comment-footer {
-    background: #F7F9FA;
-    padding: 15px;
+    /* background: #F7F9FA; 
+    padding: 15px;*/
 }
 .post-comment-form-control,
 .post-comment-form-control:focus {
     border-radius: 0;
     margin-bottom: 15px;
+    border: 1px solid #EFEFEF;
     outline: none;
     resize: none;
     box-shadow: none;
@@ -334,7 +367,8 @@ a {
 /* 
  */
  .angular-new-form-warpper {
-	padding-right: 280px
+    padding-right: 280px;
+    padding-bottom: 64px;
  }
  .col-left {
 	float: left;
@@ -364,7 +398,8 @@ a {
     left: 0;
     right: 0;
     background: #FFF;
-	border-top: 1px solid #CCC;
+    /* border-top: 1px solid #CCC; */
+    border-top: 1px solid #EFEFEF;
 	text-align: center;
 	padding: 5px 15px;
 	z-index: 1000;
@@ -382,7 +417,7 @@ a {
 	border-radius: 0;
 	box-shadow: none;
 	margin: 0;
-	border-bottom: 1px solid #DCE5EC;
+	border-bottom: 1px solid #EFEFEF;
  }
  .col-right .panel-heading {
 	border-radius: 0;
@@ -399,8 +434,8 @@ a {
 
 .panel-heading {
     color: #333;
-    background-color: #f5f5f5;
-    border-color: #ddd;
+    background-color: #FAFAFA;
+    border-color: #EFEFEF;
 }
 .panel-body {
     padding: 15px;
@@ -425,8 +460,9 @@ a {
     margin:0;
     padding: 0;
     list-style: none;
-	margin-bottom: 30px;
-	border-bottom: 1px solid #CCC;
+	margin-bottom: 45px;
+    /* border-bottom: 1px solid #CCC; */
+    border-bottom: 1px solid #EFEFEF; 
 }
 .ui-tabs>li {
 	float: left;
@@ -516,4 +552,38 @@ a {
         display: none;
     }
     
+}
+@media (max-width: 640px) {
+    .profile-container-bg .profile-container {
+        padding-bottom: 0;
+    }
+    .profile-container {
+        padding-left: 0;
+    }
+    .profile-container .profile-container-left {
+        display: none;
+    }
+
+    .ui-tabs {
+        margin-top: -15px;
+        margin-bottom: 30px;
+    }
+
+    .mobile-hide {
+        display: none !important;
+    }
+
+    .mobile-show {
+        display: block !important;
+    }
+
+    .login-card {
+        margin-top: -30px;
+        box-shadow: none;
+        border: 0;
+    }
+    .login-card .card-header {
+        padding-top: 0;
+        
+    }
 }

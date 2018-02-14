@@ -27,7 +27,7 @@
     .post-card .col-image {
         flex-basis: initial;
         max-width: 100%;
-        padding-right: 0;
+        padding-left: 15px;
         margin-bottom: 10px;
         text-align: center;
     }
