@@ -29,11 +29,11 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  toggleMenu() {
+  toggleMenu($event) {
     this.showMenu = !this.showMenu;
   }
 
-  closeMenu() {
+  closeMenu($event) {
     this.showMenu = false;
   }
 
