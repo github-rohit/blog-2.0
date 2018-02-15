@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-
 html, body {
     /* background: #F1F3F6; */
     color: #404040;
@@ -23,6 +22,14 @@ body {
 }
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+input::-webkit-input-placeholder{
+    font-weight: 300;
+    color: #999;
+    opacity: 1;
+}
+input {
+    font-weight: inherit;
 }
 html.body-white,
 html.body-white body,
@@ -552,6 +559,18 @@ a {
         display: none;
     }
     
+}
+@media (min-width: 641px) {
+    .body-img {
+        background: url('/assets/images/body-cover-bg.png');
+        background-position:  right bottom;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .body-img .navbar-expand {
+        background: transparent !important;
+        border-bottom: 0 !important;
+    }
 }
 @media (max-width: 640px) {
     .profile-container-bg .profile-container {

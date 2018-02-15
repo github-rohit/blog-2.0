@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { ComparePasswordValidation } from './../../validation/compare-password.validation';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Renderer2 } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -20,6 +20,7 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
   isValid;
 
   constructor(
+    private renderer: Renderer2,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private http: HttpClient,
@@ -63,6 +64,7 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.renderer.addClass(document.body, 'body-img');
     this.getSubscription = this.http.get('/api/resetpassword/' + this.id).subscribe(() => {
       this.isValid = true;
     }, res => {
@@ -74,6 +76,11 @@ export class ResetPasswordComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.getSubscription.unsubscribe();
-    this.submitSubscription.unsubscribe();
+
+    if (this.submitSubscription) {
+      this.submitSubscription.unsubscribe();
+    }
+    
+    this.renderer.removeClass(document.body, 'body-img');
   }
 }

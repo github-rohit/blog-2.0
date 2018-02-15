@@ -1,19 +1,23 @@
+import { Subscription } from 'rxjs/Subscription';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from './../../../shared/services/data.service';
 import { ComparePasswordValidation } from './../../validation/compare-password.validation';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'sign-up',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent {
+export class SignupComponent implements OnInit, OnDestroy {
+  subscription: Subscription;
+
   success = false;
   hide = true;
   form: FormGroup;
   constructor(
+    private renderer: Renderer2,
     private fb: FormBuilder,
     private http: HttpClient
   ) {
@@ -43,7 +47,7 @@ export class SignupComponent {
       return;
     }
 
-    this.http.post('/api/signup', this.form.value).subscribe(() => {
+    this.subscription = this.http.post('/api/signup', this.form.value).subscribe(() => {
       this.success = true;
     }, (error: Response) => {
       if (error.status === 400) {
@@ -69,5 +73,16 @@ export class SignupComponent {
   get passwordAgain() {
     return this.form.get('passwd_again');
   }
+  
+  ngOnInit() {
+    this.renderer.addClass(document.body, 'body-img');
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+    this.renderer.removeClass(document.body, 'body-img');
+  }  
 
 }

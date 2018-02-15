@@ -1,5 +1,6 @@
 .post-filter {
     margin-bottom: 30px;
+    margin-top: -15px;
 }
 
 .post-filter .border-bottom {
@@ -15,7 +16,7 @@
 
 .post-filter .post-filter-input {
     width: 100%;
-    font-size: 24px;
+    font-size: 20px;
     padding: 10px 0;
     line-height: 1;
     font-weight: 300;

@@ -1,8 +1,9 @@
+import { Subscription } from 'rxjs/Subscription';
 import { AuthService } from './../../../shared/services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'login',
@@ -10,11 +11,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 
-export class LoginComponent {
+export class LoginComponent implements OnInit, OnDestroy {
+  subscription: Subscription;
   returnUrl;
   hide = true;
   form: FormGroup;
   constructor(
+    private renderer: Renderer2,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
@@ -50,7 +53,7 @@ export class LoginComponent {
       return;
     }
 
-    this.http.post('/api/login', this.form.value).subscribe((res: any) => {
+    this.subscription = this.http.post('/api/login', this.form.value).subscribe((res: any) => {
       this.authService.token = res.token;
       this.routeToAdmin();
     }, (res) => {
@@ -67,5 +70,17 @@ export class LoginComponent {
   get password() {
     return this.form.get('passwd');
   }
+
+  ngOnInit() {
+    this.renderer.addClass(document.body, 'body-img');
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+    
+    this.renderer.removeClass(document.body, 'body-img');
+  }  
 
 }
