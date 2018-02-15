@@ -25,8 +25,12 @@
   </div>
 </div>
 <div class="container">
-  <ng-container *ngFor="let post of posts">
-    <post-card [post]="post"></post-card>
-  </ng-container>
-  <post-paginator [length]="length"></post-paginator>
+  <div class="row">
+    <ng-container *ngFor="let post of posts">
+      <div class="col-md-4 col-sm-6 post-container">
+        <post-card [post]="post"></post-card>
+      </div>
+    </ng-container>
+  </div>
+<post-paginator [length]="length"></post-paginator>
 </div>

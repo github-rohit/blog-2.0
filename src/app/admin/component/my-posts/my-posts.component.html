@@ -17,9 +17,13 @@
       </a>
     </div>
   </ng-container>
-  <ng-container *ngFor="let post of posts">
-    <post-card [post]="post" [isOwner]="{status: post.status.toLowerCase(), preview: true}"></post-card>
-  </ng-container>
+  <div class="row">
+    <ng-container *ngFor="let post of posts">
+      <div class="col-md-4 col-sm-6 post-container">
+        <post-card [post]="post" [isOwner]="{status: post.status.toLowerCase(), preview: true}"></post-card>
+      </div>
+    </ng-container>
+  </div>
   <post-paginator [length]="length"></post-paginator>
   <span class="floating-plus">
     <a routerLink="/admin/post/new" mat-fab color="primary">

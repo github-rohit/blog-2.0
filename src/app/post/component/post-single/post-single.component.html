@@ -3,7 +3,7 @@
     <div class="col-md-9">
       <div *ngIf="post">
         <div class="ui-post-page">
-          <h2>{{post.title}}</h2>
+          <h1 class="post-title">{{post.title}}</h1>
           <div class="byline small">
             <i>BY
               <a [routerLink]="['/author/', post.created_by, post.author[0].name | replaceWithDash]">{{post.author[0].name}}</a>
@@ -32,7 +32,7 @@
         <post-comment *ngIf="!preview" [post-id]="postId"></post-comment>
       </div>
     </div>
-    <div class="col-md-3 mobile-hide">
+    <div class="col-md-3 mobile-hide tab-small-hide">
       <app-category></app-category>
     </div>
   </div>
