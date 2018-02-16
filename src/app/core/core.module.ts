@@ -14,6 +14,7 @@ import { AuthorComponent } from './component/author/author.component';
 import { PageLoaderComponent } from './component/page-loader/page-loader.component';
 import { NotAuthGuard } from './services/not-auth-guard.service';
 import { EmailVerifierComponent } from './component/email-verifier/email-verifier.component';
+import { UserAvatarTextPipe } from './pipes/user-avatar-text.pipe';
 
 @NgModule({
   imports: [
@@ -42,7 +43,8 @@ import { EmailVerifierComponent } from './component/email-verifier/email-verifie
     ResetPasswordComponent,
     AuthorComponent,
     PageLoaderComponent,
-    EmailVerifierComponent
+    EmailVerifierComponent,
+    UserAvatarTextPipe
   ],
   providers: [
     NotAuthGuard

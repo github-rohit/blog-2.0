@@ -26,11 +26,11 @@
           <a [routerLink]="['/admin/myposts/']" [queryParams]="{status: 'published'}">MY POSTS</a>
         </li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li *ngIf="!auth.isLoggedIn()" [routerLinkActive]="['active']">
+      <ul class="nav navbar-nav navbar-right" *ngIf="!auth.isLoggedIn()">
+        <li [routerLinkActive]="['active']">
           <a routerLink="login">LOGIN</a>
         </li>
-        <li *ngIf="!auth.isLoggedIn()" [routerLinkActive]="['active']">
+        <li [routerLinkActive]="['active']">
           <a routerLink="signup">SIGN UP</a>
         </li>
       </ul>
@@ -47,7 +47,7 @@
           <li>
             <a href="javascript:void(0)" class="user-avatar rounded-circle" [matMenuTriggerFor]="userMenu">
               <img *ngIf="auth.user.image" [src]="auth.user.image">
-              <span>RG</span>
+              <span>{{auth.user.name | userAvatarText}}</span>
             </a>
           </li>
         </ul>
@@ -57,7 +57,7 @@
               <a routerLink="admin/profile" class="d-flex">
                 <div class="user-avatar rounded-circle align-self-center col">
                   <img *ngIf="auth.user.image" [src]="auth.user.image">
-                  <span>RG</span>
+                  <span>{{auth.user.name | userAvatarText}}</span>
                 </div>
                 <div class="col">
                   <div class="uname">{{auth.user.name}}</div>
