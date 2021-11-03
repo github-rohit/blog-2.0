@@ -48,7 +48,7 @@
     "sendmail": "^1.2.0",
     "tinymce": "^4.7.4",
     "typescript": "~2.4.2",
-    "validator": "^9.2.0",
+    "validator": "^13.7.0",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
